@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sitefy - Criar Conta</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .background-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .shape {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+
+        .shape:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .signup-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 100%;
+            max-width: 420px;
+            position: relative;
+            animation: slideIn 0.8s ease-out;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 5px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 5px rgba(102, 126, 234, 0.3)); }
+            to { filter: drop-shadow(0 0 15px rgba(102, 126, 234, 0.6)); }
+        }
+
+        .logo p {
+            color: #666;
+            font-size: 0.9rem;
+            font-weight: 300;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e1e5e9;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.8);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .form-group label {
+            position: absolute;
+            left: 20px;
+            top: 15px;
+            color: #999;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            font-weight: 400;
+        }
+
+        .form-group input:focus + label,
+        .form-group input:not(:placeholder-shown) + label {
+            top: -10px;
+            left: 15px;
+            font-size: 0.8rem;
+            color: #667eea;
+            background: white;
+            padding: 0 5px;
+        }
+
+        .signup-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+            margin-top: 10px;
+        }
+
+        .signup-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .signup-btn:active {
+            transform: translateY(0);
+        }
+
+        .signup-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .signup-btn:hover::before {
+            left: 100%;
+        }
+
+        .links-container {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .links-container a {
+            color: #667eea;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .links-container a:hover {
+            color: #764ba2;
+            transform: translateY(-1px);
+        }
+
+        .links-container a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            transition: all 0.3s ease;
+        }
+
+        .links-container a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        .password-strength {
+            font-size: 0.8rem;
+            margin-top: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .strength-weak { color: #ff4757; }
+        .strength-medium { color: #ffa502; }
+        .strength-strong { color: #2ed573; }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .loading-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid #e1e5e9;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error-message, .success-message {
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 500;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .error-message {
+            background: #ff4757;
+            color: white;
+        }
+
+        .success-message {
+            background: #2ed573;
+            color: white;
+        }
+
+        .error-message.show, .success-message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .signup-container {
+                margin: 20px;
+                padding: 30px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-animation">
+        <div class="floating-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+    </div>
+
+    <div class="signup-container">
+        <div class="logo">
+            <h1>Sitefy</h1>
+            <p>Crie sua conta gratuita</p>
+        </div>
+
+        <div id="error-message" class="error-message"></div>
+        <div id="success-message" class="success-message"></div>
+
+        <form id="signupForm">
+            <div class="form-group">
+                <input type="text" id="name" placeholder=" " required>
+                <label for="name">Nome completo</label>
+            </div>
+
+            <div class="form-group">
+                <input type="email" id="email" placeholder=" " required>
+                <label for="email">E-mail</label>
+            </div>
+
+            <div class="form-group">
+                <input type="password" id="password" placeholder=" " required minlength="6">
+                <label for="password">Senha</label>
+                <div id="password-strength" class="password-strength"></div>
+            </div>
+
+            <div class="form-group">
+                <input type="password" id="confirmPassword" placeholder=" " required>
+                <label for="confirmPassword">Confirmar senha</label>
+            </div>
+
+            <button type="submit" class="signup-btn">
+                Criar Conta
+            </button>
+        </form>
+
+        <div class="links-container">
+            <a href="teladlogin.html">Já tenho conta</a>
+        </div>
+    </div>
+
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyARvgxnpRiByevuu0lKWzPZ8bzQph9fbww",
+            authDomain: "sitefyfend.firebaseapp.com",
+            databaseURL: "https://sitefyfend-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "sitefyfend",
+            storageBucket: "sitefyfend.firebasestorage.app",
+            messagingSenderId: "636147623677",
+            appId: "1:636147623677:web:6b4de9d341809e98474094"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+        function showLoading() {
+            document.getElementById('loadingOverlay').classList.add('active');
+        }
+
+        function hideLoading() {
+            document.getElementById('loadingOverlay').classList.remove('active');
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('error-message');
+            errorDiv.textContent = message;
+            errorDiv.classList.add('show');
+            
+            setTimeout(() => {
+                errorDiv.classList.remove('show');
+            }, 5000);
+        }
+
+        function showSuccess(message) {
+            const successDiv = document.getElementById('success-message');
+            successDiv.textContent = message;
+            successDiv.classList.add('show');
+            
+            setTimeout(() => {
+                successDiv.classList.remove('show');
+            }, 3000);
+        }
+
+        function checkPasswordStrength(password) {
+            const strengthDiv = document.getElementById('password-strength');
+            let strength = 0;
+            let message = '';
+
+            if (password.length >= 6) strength++;
+            if (password.match(/[a-z]/) && password.match(/[A-Z]/)) strength++;
+            if (password.match(/\d/)) strength++;
+            if (password.match(/[^a-zA-Z\d]/)) strength++;
+
+            switch (strength) {
+                case 0:
+                case 1:
+                    message = 'Senha fraca';
+                    strengthDiv.className = 'password-strength strength-weak';
+                    break;
+                case 2:
+                    message = 'Senha média';
+                    strengthDiv.className = 'password-strength strength-medium';
+                    break;
+                case 3:
+                case 4:
+                    message = 'Senha forte';
+                    strengthDiv.className = 'password-strength strength-strong';
+                    break;
+            }
+
+            strengthDiv.textContent = message;
+        }
+
+        document.getElementById('password').addEventListener('input', (e) => {
+            checkPasswordStrength(e.target.value);
+        });
+
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            if (password !== confirmPassword) {
+                showError('Senhas não coincidem');
+                return;
+            }
+
+            if (password.length < 6) {
+                showError('Senha deve ter pelo menos 6 caracteres');
+                return;
+            }
+            
+            showLoading();
+            
+            try {
+                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+                const user = userCredential.user;
+                
+                await user.updateProfile({
+                    displayName: name
+                });
+                
+                showSuccess('Conta criada com sucesso! Redirecionando...');
+                
+                setTimeout(() => {
+                    hideLoading();
+                    window.location.href = 'home.html';
+                }, 2000);
+                
+            } catch (error) {
+                hideLoading();
+                
+                let errorMessage = 'Erro ao criar conta';
+                switch (error.code) {
+                    case 'auth/email-already-in-use':
+                        errorMessage = 'E-mail já está em uso';
+                        break;
+                    case 'auth/invalid-email':
+                        errorMessage = 'E-mail inválido';
+                        break;
+                    case 'auth/weak-password':
+                        errorMessage = 'Senha muito fraca';
+                        break;
+                    case 'auth/operation-not-allowed':
+                        errorMessage = 'Operação não permitida';
+                        break;
+                }
+                
+                showError(errorMessage);
+            }
+        });
+    </script>
+</body>
+</html>
