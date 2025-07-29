@@ -655,7 +655,8 @@
 
         function loadProject() {
             showLoading();
-            database.ref(`projects/${currentUser.uid}/${projectId}`).once('value')
+            
+            database.ref(`users/${currentUser.uid}/projects/${projectId}`).once('value')
                 .then((snapshot) => {
                     const project = snapshot.val();
                     if (project) {
@@ -669,15 +670,32 @@
                         updateCodePanel();
                         saveToHistory();
                     } else {
-                        alert('Projeto não encontrado');
-                        window.location.href = 'home.html';
+                        throw new Error('Projeto não encontrado no Firebase');
                     }
                     hideLoading();
                 })
                 .catch((error) => {
-                    hideLoading();
-                    console.error('Erro ao carregar projeto:', error);
-                    alert('Erro ao carregar projeto');
+                    console.error('Erro do Firebase:', error);
+                    
+                    const localProjects = JSON.parse(localStorage.getItem('sitefy_projects') || '{}');
+                    const project = localProjects[projectId];
+                    
+                    if (project && project.userId === currentUser.uid) {
+                        currentProject = project;
+                        document.getElementById('projectName').textContent = project.name;
+                        if (project.elements) {
+                            project.elements.forEach(element => {
+                                addElementToCanvas(element);
+                            });
+                        }
+                        updateCodePanel();
+                        saveToHistory();
+                        hideLoading();
+                    } else {
+                        hideLoading();
+                        alert('Projeto não encontrado');
+                        window.location.href = 'home.html';
+                    }
                 });
         }
 
