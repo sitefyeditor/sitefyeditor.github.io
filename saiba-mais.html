@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sitefy - Saiba Mais</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .content-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(20px);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .content-card h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .content-card h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .content-card p {
+            line-height: 1.8;
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .feature-item {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+            background: rgba(102, 126, 234, 0.15);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 15px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .back-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            display: block;
+            margin: 30px auto 0;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+            
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .content-card {
+                padding: 25px 20px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Sobre o Sitefy</h1>
+            <p>A plataforma completa para desenvolvedores modernos</p>
+        </div>
+
+        <div class="content-card">
+            <h2>O que é o Sitefy?</h2>
+            <p>
+                O Sitefy é uma plataforma revolucionária de desenvolvimento web que permite criar, editar e gerenciar seus projetos de código de forma intuitiva e eficiente. Nossa missão é democratizar o desenvolvimento web, tornando-o acessível para desenvolvedores de todos os níveis.
+            </p>
+            <p>
+                Com uma interface moderna e ferramentas poderosas, o Sitefy oferece tudo o que você precisa para transformar suas ideias em realidade digital. Desde projetos simples até aplicações complexas, nossa plataforma adapta-se às suas necessidades.
+            </p>
+        </div>
+
+        <div class="content-card">
+            <h2>Principais Recursos</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">💻</div>
+                    <h3>Editor Avançado</h3>
+                    <p>Editor de código com syntax highlighting e autocomplete</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">☁️</div>
+                    <h3>Salvamento na Nuvem</h3>
+                    <p>Seus projetos sincronizados e seguros em tempo real</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Deploy Instantâneo</h3>
+                    <p>Publique seus projetos com apenas um clique</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Segurança Total</h3>
+                    <p>Autenticação segura e proteção de dados</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h2>Por que escolher o Sitefy?</h2>
+            <p>
+                <strong>Simplicidade:</strong> Interface intuitiva que permite focar no que realmente importa - seu código.
+            </p>
+            <p>
+                <strong>Velocidade:</strong> Ferramentas otimizadas para um desenvolvimento ágil e produtivo.
+            </p>
+            <p>
+                <strong>Colaboração:</strong> Recursos avançados para trabalho em equipe e versionamento.
+            </p>
+            <p>
+                <strong>Escalabilidade:</strong> Da prototipagem à produção, crescemos junto com seus projetos.
+            </p>
+        </div>
+
+        <div class="content-card">
+            <h2>Nossa Visão</h2>
+            <p>
+                Acreditamos que o desenvolvimento web deve ser uma experiência prazerosa e acessível. Nossa visão é criar um ecossistema onde desenvolvedores possam expressar sua criatividade sem limitações técnicas, focando na inovação e na criação de soluções que impactem positivamente o mundo digital.
+            </p>
+        </div>
+
+        <button class="back-btn" onclick="window.close()">
+            Voltar
+        </button>
+    </div>
+</body>
+</html>

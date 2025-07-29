@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sitefy - Política de Privacidade</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .content-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(20px);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .content-card h2 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .content-card h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .content-card h3 {
+            font-size: 1.3rem;
+            color: #444;
+            margin: 25px 0 15px 0;
+        }
+
+        .content-card p {
+            line-height: 1.8;
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        .content-card ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .content-card li {
+            color: #666;
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .back-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            display: block;
+            margin: 30px auto 0;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .last-updated {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 500;
+            color: #667eea;
+            margin-bottom: 30px;
+        }
+
+        .highlight-box {
+            background: rgba(102, 126, 234, 0.05);
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+            
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .content-card {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Política de Privacidade</h1>
+            <p>Como protegemos e utilizamos seus dados</p>
+        </div>
+
+        <div class="last-updated">
+            Última atualização: Janeiro de 2025
+        </div>
+
+        <div class="content-card">
+            <h2>1. Introdução</h2>
+            <p>
+                Esta Política de Privacidade descreve como o Sitefy coleta, usa, processa e protege suas informações pessoais quando você utiliza nossa plataforma de desenvolvimento web. Nosso compromisso é garantir a transparência e segurança no tratamento de seus dados.
+            </p>
+            <div class="highlight-box">
+                <strong>Resumo:</strong> Coletamos apenas as informações necessárias para fornecer nossos serviços, protegemos seus dados com tecnologias avançadas e você tem controle total sobre suas informações pessoais.
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h2>2. Informações que Coletamos</h2>
+            <h3>2.1 Informações Fornecidas por Você</h3>
+            <ul>
+                <li><strong>Dados de Cadastro:</strong> Nome, e-mail, senha (criptografada)</li>
+                <li><strong>Conteúdo dos Projetos:</strong> Código, arquivos e dados que você cria na plataforma</li>
+                <li><strong>Informações de Perfil:</strong> Preferências, configurações e dados opcionais do perfil</li>
+            </ul>
+            
+            <h3>2.2 Informações Coletadas Automaticamente</h3>
+            <ul>
+                <li><strong>Dados de Uso:</strong> Como você interage com a plataforma, recursos utilizados</li>
+                <li><strong>Informações Técnicas:</strong> Endereço IP, tipo de navegador, sistema operacional</li>
+                <li><strong>Dados de Performance:</strong> Tempos de carregamento, erros, estatísticas de uso</li>
+            </ul>
+        </div>
+
+        <div class="content-card">
+            <h2>3. Como Utilizamos suas Informações</h2>
+            <h3>3.1 Fornecimento de Serviços</h3>
+            <ul>
+                <li>Processar e armazenar seus projetos de código</li>
+                <li>Autenticar e gerenciar sua conta</li>
+                <li>Fornecer suporte técnico e atendimento ao cliente</li>
+                <li>Sincronizar dados entre dispositivos</li>
+            </ul>
+            
+            <h3>3.2 Melhoria da Plataforma</h3>
+            <ul>
+                <li>Analisar padrões de uso para otimizar recursos</li>
+                <li>Desenvolver novos recursos baseados nas necessidades dos usuários</li>
+                <li>Prevenir fraudes e atividades maliciosas</li>
+                <li>Realizar backup e recuperação de dados</li>
+            </ul>
+        </div>
+
+        <div class="content-card">
+            <h2>4. Compartilhamento de Informações</h2>
+            <p>
+                <strong>Não vendemos suas informações pessoais.</strong> Compartilhamos dados apenas nas seguintes situações:
+            </p>
+            <ul>
+                <li><strong>Provedores de Serviços:</strong> Firebase/Google para autenticação e armazenamento</li>
+                <li><strong>Conformidade Legal:</strong> Quando exigido por lei ou ordem judicial</li>
+                <li><strong>Proteção de Direitos:</strong> Para proteger nossos direitos legais ou dos usuários</li>
+                <li><strong>Transferência de Negócios:</strong> Em caso de fusão ou aquisição (com notificação prévia)</li>
+            </ul>
+        </div>
+
+        <div class="content-card">
+            <h2>5. Segurança dos Dados</h2>
+            <h3>5.1 Medidas de Proteção</h3>
+            <ul>
+                <li><strong>Criptografia:</strong> Dados transmitidos via HTTPS/TLS</li>
+                <li><strong>Autenticação Segura:</strong> Sistema de login protegido pelo Firebase</li>
+                <li><strong>Controle de Acesso:</strong> Acesso restrito aos dados pessoais</li>
+                <li><strong>Monitoramento:</strong> Sistemas de detecção de atividades suspeitas</li>
+                <li><strong>Backup Automático:</strong> Proteção contra perda de dados</li>
+            </ul>
+            
+            <h3>5.2 Responsabilidade do Usuário</h3>
+            <ul>
+                <li>Manter suas credenciais de acesso seguras</li>
+                <li>Não compartilhar informações sensíveis nos projetos</li>
+                <li>Reportar atividades suspeitas imediatamente</li>
+            </ul>
+        </div>
+
+        <div class="content-card">
+            <h2>6. Seus Direitos</h2>
+            <p>De acordo com as leis de proteção de dados, você tem os seguintes direitos:</p>
+            <ul>
+                <li><strong>Acesso:</strong> Solicitar cópia dos seus dados pessoais</li>
+                <li><strong>Retificação:</strong> Corrigir informações incorretas ou incompletas</li>
+                <li><strong>Exclusão:</strong> Solicitar remoção de seus dados ("direito ao esquecimento")</li>
+                <li><strong>Portabilidade:</strong> Exportar seus dados em formato estruturado</li>
+                <li><strong>Objeção:</strong> Contestar o processamento de seus dados</li>
+                <li><strong>Restrição:</strong> Limitar como processamos seus dados</li>
+            </ul>
+        </div>
+
+        <div class="content-card">
+            <h2>7. Retenção de Dados</h2>
+            <h3>7.1 Período de Armazenamento</h3>
+            <ul>
+                <li><strong>Contas Ativas:</strong> Dados mantidos enquanto a conta estiver ativa</li>
+                <li><strong>Contas Inativas:</strong> Dados excluídos após 2 anos de inatividade</li>
+                <li><strong>Dados de Log:</strong> Mantidos por até 12 meses para segurança</li>
+                <li><strong>Exclusão Solicitada:</strong> Processada em até 30 dias</li>
+            </ul>
+        </div>
+
+        <div class="content-card">
+            <h2>8. Cookies e Tecnologias Similares</h2>
+            <p>
+                Utilizamos cookies e tecnologias similares para:
+            </p>
+            <ul>
+                <li>Manter você logado na plataforma</li>
+                <li>Lembrar suas preferências e configurações</li>
+                <li>Analisar o desempenho da plataforma</li>
+                <li>Personalizar sua experiência</li>
+            </ul>
+            <p>
+                Você pode controlar os cookies através das configurações do seu navegador, mas isso pode afetar a funcionalidade da plataforma.
+            </p>
+        </div>
+
+        <div class="content-card">
+            <h2>9. Transferências Internacionais</h2>
+            <p>
+                Seus dados podem ser processados em servidores localizados fora do seu país de residência, incluindo nos Estados Unidos (servidores do Google/Firebase). Garantimos que todas as transferências estejam em conformidade com as leis aplicáveis de proteção de dados.
+            </p>
+        </div>
+
+        <div class="content-card">
+            <h2>10. Alterações nesta Política</h2>
+            <p>
+                Podemos atualizar esta Política de Privacidade periodicamente. Notificaremos sobre mudanças significativas através de:
+            </p>
+            <ul>
+                <li>E-mail para usuários registrados</li>
+                <li>Notificação na plataforma</li>
+                <li>Atualização da data de "última modificação"</li>
+            </ul>
+        </div>
+
+        <div class="content-card">
+            <h2>11. Contato</h2>
+            <p>
+                Para questões sobre privacidade, exercer seus direitos ou reportar problemas de segurança, entre em contato conosco através dos canais oficiais disponíveis na plataforma.
+            </p>
+            <div class="highlight-box">
+                <strong>Compromisso:</strong> Respondemos a todas as solicitações relacionadas à privacidade em até 72 horas.
+            </div>
+        </div>
+
+        <button class="back-btn" onclick="window.close()">
+            Voltar
+        </button>
+    </div>
+</body>
+</html>

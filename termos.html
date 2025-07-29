@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sitefy - Termos e Condições</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .content-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(20px);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .content-card h2 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .content-card h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .content-card h3 {
+            font-size: 1.3rem;
+            color: #444;
+            margin: 25px 0 15px 0;
+        }
+
+        .content-card p {
+            line-height: 1.8;
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        .content-card ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .content-card li {
+            color: #666;
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .back-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            display: block;
+            margin: 30px auto 0;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .last-updated {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 500;
+            color: #667eea;
+            margin-bottom: 30px;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+            
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .content-card {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Termos e Condições</h1>
+            <p>Termos de uso da plataforma Sitefy</p>
+        </div>
+
+        <div class="last-updated">
+            Última atualização: Janeiro de 2025
+        </div>
+
+        <div class="content-card">
+            <h2>1. Aceitação dos Termos</h2>
+            <p>
+                Ao acessar e usar o Sitefy, você concorda em cumprir e estar vinculado a estes Termos e Condições de Uso. Se você não concordar com qualquer parte destes termos, não deve usar nossos serviços.
+            </p>
+        </div>
+
+        <div class="content-card">
+            <h2>2. Descrição do Serviço</h2>
+            <p>
+                O Sitefy é uma plataforma de desenvolvimento web que oferece:
+            </p>
+            <ul>
+                <li>Editor de código online com recursos avançados</li>
+                <li>Armazenamento seguro de projetos na nuvem</li>
+                <li>Ferramentas de colaboração e versionamento</li>
+                <li>Recursos de deploy e hospedagem</li>
+                <li>Integração com sistemas de autenticação</li>
+            </ul>
+        </div>
+
+        <div class="content-card">
+            <h2>3. Conta de Usuário</h2>
+            <h3>3.1 Registro</h3>
+            <p>
+                Para usar nossos serviços, você deve criar uma conta fornecendo informações precisas e atualizadas. Você é responsável por manter a confidencialidade de suas credenciais de acesso.
+            </p>
+            <h3>3.2 Responsabilidades do Usuário</h3>
+            <ul>
+                <li>Manter suas informações de conta atualizadas</li>
+                <li>Não compartilhar suas credenciais com terceiros</li>
+                <li>Notificar imediatamente sobre uso não autorizado</li>
+                <li>Usar a plataforma de acordo com estes termos</li>
+            </ul>
+        </div>
+
+        <div class="content-card">
+            <h2>4. Uso Aceitável</h2>
+            <h3>4.1 Condutas Permitidas</h3>
+            <p>
+                Você pode usar o Sitefy para criar, editar e gerenciar projetos de desenvolvimento web legítimos, respeitando os direitos de propriedade intelectual de terceiros.
+            </p>
+            <h3>4.2 Condutas Proibidas</h3>
+            <ul>
+                <li>Usar a plataforma para atividades ilegais ou maliciosas</li>
+                <li>Fazer upload de conteúdo que viole direitos autorais</li>
+                <li>Tentar acessar sistemas ou dados não autorizados</li>
+                <li>Interferir no funcionamento da plataforma</li>
+                <li>Criar múltiplas contas para contornar limitações</li>
+            </ul>
+        </div>
+
+        <div class="content-card">
+            <h2>5. Propriedade Intelectual</h2>
+            <h3>5.1 Conteúdo do Usuário</h3>
+            <p>
+                Você mantém todos os direitos sobre o código e conteúdo que criar usando nossa plataforma. Concedemos apenas uma licença limitada para hospedar e processar seu conteúdo conforme necessário para fornecer nossos serviços.
+            </p>
+            <h3>5.2 Conteúdo da Plataforma</h3>
+            <p>
+                O Sitefy e todos os seus recursos, incluindo código, design, logos e documentação, são propriedade exclusiva da empresa e estão protegidos por leis de propriedade intelectual.
+            </p>
+        </div>
+
+        <div class="content-card">
+            <h2>6. Privacidade e Dados</h2>
+            <p>
+                Nossa coleta e uso de dados pessoais são regidos por nossa Política de Privacidade, que faz parte integrante destes termos. Recomendamos que você leia nossa política de privacidade para entender como tratamos suas informações.
+            </p>
+        </div>
+
+        <div class="content-card">
+            <h2>7. Limitações de Responsabilidade</h2>
+            <p>
+                O Sitefy é fornecido "como está" sem garantias expressas ou implícitas. Não nos responsabilizamos por:
+            </p>
+            <ul>
+                <li>Perda de dados ou projetos</li>
+                <li>Interrupções temporárias do serviço</li>
+                <li>Problemas causados por código de terceiros</li>
+                <li>Danos diretos ou indiretos decorrentes do uso da plataforma</li>
+            </ul>
+        </div>
+
+        <div class="content-card">
+            <h2>8. Modificações dos Termos</h2>
+            <p>
+                Reservamos o direito de modificar estes termos a qualquer momento. As alterações entrarão em vigor imediatamente após a publicação. O uso continuado da plataforma após as alterações constitui aceitação dos novos termos.
+            </p>
+        </div>
+
+        <div class="content-card">
+            <h2>9. Encerramento</h2>
+            <p>
+                Podemos suspender ou encerrar sua conta a qualquer momento por violação destes termos. Você pode encerrar sua conta a qualquer momento através das configurações da plataforma.
+            </p>
+        </div>
+
+        <div class="content-card">
+            <h2>10. Contato</h2>
+            <p>
+                Para questões sobre estes Termos e Condições, entre em contato conosco através dos canais oficiais disponíveis na plataforma.
+            </p>
+        </div>
+
+        <button class="back-btn" onclick="window.close()">
+            Voltar
+        </button>
+    </div>
+</body>
+</html>

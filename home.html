@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sitefy - Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 20px 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .logout-btn {
+            background: #ff4757;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .logout-btn:hover {
+            background: #ff3742;
+            transform: translateY(-2px);
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .welcome-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            text-align: center;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .welcome-section h2 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .welcome-section p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-card h3 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .project-card p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .project-date {
+            font-size: 0.9rem;
+            color: #999;
+        }
+
+        .add-project-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            margin: 20px auto;
+            display: block;
+        }
+
+        .add-project-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 0 15px;
+            }
+            
+            .welcome-section {
+                padding: 25px 20px;
+            }
+            
+            .welcome-section h2 {
+                font-size: 2rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">
+                <h1>Sitefy</h1>
+            </div>
+            <div class="user-info">
+                <div class="user-avatar" id="userAvatar">U</div>
+                <span id="userEmail">usuario@exemplo.com</span>
+                <button class="logout-btn" onclick="logout()">Sair</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="welcome-section">
+            <h2>Bem-vindo ao Sitefy!</h2>
+            <p>Gerencie seus projetos e códigos de forma simples e eficiente</p>
+            
+            <button class="add-project-btn" onclick="createNewProject()">
+                + Novo Projeto
+            </button>
+        </div>
+
+        <div class="projects-grid" id="projectsGrid">
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyARvgxnpRiByevuu0lKWzPZ8bzQph9fbww",
+            authDomain: "sitefyfend.firebaseapp.com",
+            databaseURL: "https://sitefyfend-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "sitefyfend",
+            storageBucket: "sitefyfend.firebasestorage.app",
+            messagingSenderId: "636147623677",
+            appId: "1:636147623677:web:6b4de9d341809e98474094"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const database = firebase.database();
+
+        let currentUser = null;
+
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                currentUser = user;
+                document.getElementById('userEmail').textContent = user.email;
+                document.getElementById('userAvatar').textContent = user.email.charAt(0).toUpperCase();
+                loadUserProjects();
+            } else {
+                window.location.href = 'teladlogin.html';
+            }
+        });
+
+        function logout() {
+            auth.signOut().then(() => {
+                window.location.href = 'teladlogin.html';
+            });
+        }
+
+        function createNewProject() {
+            const projectName = prompt('Nome do projeto:');
+            if (projectName && currentUser) {
+                const projectId = Date.now().toString();
+                const projectData = {
+                    name: projectName,
+                    createdAt: new Date().toISOString(),
+                    userId: currentUser.uid,
+                    code: '// Seu código aqui\nconsole.log("Olá, mundo!");'
+                };
+
+                database.ref(`projects/${currentUser.uid}/${projectId}`).set(projectData)
+                    .then(() => {
+                        loadUserProjects();
+                    })
+                    .catch((error) => {
+                        alert('Erro ao criar projeto: ' + error.message);
+                    });
+            }
+        }
+
+        function loadUserProjects() {
+            if (!currentUser) return;
+
+            const projectsRef = database.ref(`projects/${currentUser.uid}`);
+            projectsRef.on('value', (snapshot) => {
+                const projects = snapshot.val();
+                const grid = document.getElementById('projectsGrid');
+                grid.innerHTML = '';
+
+                if (projects) {
+                    Object.keys(projects).forEach(projectId => {
+                        const project = projects[projectId];
+                        const projectCard = createProjectCard(projectId, project);
+                        grid.appendChild(projectCard);
+                    });
+                }
+            });
+        }
+
+        function createProjectCard(projectId, project) {
+            const card = document.createElement('div');
+            card.className = 'project-card';
+            card.onclick = () => openProject(projectId);
+            
+            const date = new Date(project.createdAt).toLocaleDateString('pt-BR');
+            
+            card.innerHTML = `
+                <h3>${project.name}</h3>
+                <p>Clique para abrir e editar seu projeto</p>
+                <div class="project-date">Criado em: ${date}</div>
+            `;
+            
+            return card;
+        }
+
+        function openProject(projectId) {
+            window.location.href = `editor.html?project=${projectId}`;
+        }
+    </script>
+</body>
+</html>
