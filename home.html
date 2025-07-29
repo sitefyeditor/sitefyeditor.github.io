@@ -540,15 +540,33 @@
 
         function loadUserProjects() {
             showLoading();
-            const projectsRef = database.ref(`projects/${currentUser.uid}`);
+            
+            const projectsRef = database.ref(`users/${currentUser.uid}/projects`);
             projectsRef.on('value', (snapshot) => {
                 hideLoading();
                 const data = snapshot.val();
                 projects = data || {};
+                
+                const localProjects = JSON.parse(localStorage.getItem('sitefy_projects') || '{}');
+                Object.keys(localProjects).forEach(key => {
+                    if (localProjects[key].userId === currentUser.uid) {
+                        projects[key] = localProjects[key];
+                    }
+                });
+                
                 renderProjects();
             }, (error) => {
                 hideLoading();
-                console.error('Erro ao carregar projetos:', error);
+                console.error('Erro ao carregar do Firebase:', error);
+                
+                const localProjects = JSON.parse(localStorage.getItem('sitefy_projects') || '{}');
+                projects = {};
+                Object.keys(localProjects).forEach(key => {
+                    if (localProjects[key].userId === currentUser.uid) {
+                        projects[key] = localProjects[key];
+                    }
+                });
+                renderProjects();
             });
         }
 
