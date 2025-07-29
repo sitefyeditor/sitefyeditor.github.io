@@ -633,15 +633,29 @@
             const project = projects[projectId];
             if (confirm(`Tem certeza que deseja excluir o projeto "${project.name}"?`)) {
                 showLoading();
-                database.ref(`projects/${currentUser.uid}/${projectId}`).remove()
+                
+                database.ref(`users/${currentUser.uid}/projects/${projectId}`).remove()
                     .then(() => {
                         hideLoading();
                         delete projects[projectId];
+                        
+                        const localProjects = JSON.parse(localStorage.getItem('sitefy_projects') || '{}');
+                        delete localProjects[projectId];
+                        localStorage.setItem('sitefy_projects', JSON.stringify(localProjects));
+                        
                         renderProjects();
                     })
                     .catch((error) => {
                         hideLoading();
-                        alert('Erro ao excluir projeto: ' + error.message);
+                        
+                        const localProjects = JSON.parse(localStorage.getItem('sitefy_projects') || '{}');
+                        delete localProjects[projectId];
+                        localStorage.setItem('sitefy_projects', JSON.stringify(localProjects));
+                        
+                        delete projects[projectId];
+                        renderProjects();
+                        
+                        console.log('Projeto removido localmente devido ao erro:', error.message);
                     });
             }
         }
