@@ -511,14 +511,29 @@
                 };
 
                 showLoading();
-                database.ref(`projects/${currentUser.uid}/${projectId}`).set(projectData)
+                
+                database.ref(`users/${currentUser.uid}/projects/${projectId}`).set(projectData)
                     .then(() => {
                         hideLoading();
                         window.location.href = `editor.html?project=${projectId}`;
                     })
                     .catch((error) => {
                         hideLoading();
-                        alert('Erro ao criar projeto: ' + error.message);
+                        console.error('Erro detalhado:', error);
+                        
+                        if (error.code === 'PERMISSION_DENIED') {
+                            alert('Erro de permissão. Tentando método alternativo...');
+                            
+                            const projectsLocal = JSON.parse(localStorage.getItem('sitefy_projects') || '{}');
+                            projectsLocal[projectId] = projectData;
+                            localStorage.setItem('sitefy_projects', JSON.stringify(projectsLocal));
+                            
+                            projects[projectId] = projectData;
+                            renderProjects();
+                            window.location.href = `editor.html?project=${projectId}`;
+                        } else {
+                            alert('Erro ao criar projeto: ' + error.message + '\nCódigo: ' + error.code);
+                        }
                     });
             }
         }
