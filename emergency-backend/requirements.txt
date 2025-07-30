@@ -6,9 +6,6 @@ Flask-CORS==4.0.0
 # Segurança e autenticação
 Werkzeug==3.0.1
 
-# Banco de dados
-sqlite3
-
 # Utilities
 python-dotenv==1.0.0
 
