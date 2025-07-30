@@ -3,9 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sitefy - Editor Visual</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Sitefy - Editor Visual Dark</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
+            --bg-quaternary: #30363d;
+            --bg-modal: #1c2128;
+            --text-primary: #f0f6fc;
+            --text-secondary: #8b949e;
+            --text-muted: #656d76;
+            --border-primary: #30363d;
+            --border-secondary: #21262d;
+            --accent-primary: #238636;
+            --accent-secondary: #2f81f7;
+            --accent-tertiary: #da3633;
+            --accent-warning: #f85149;
+            --accent-info: #1f6feb;
+            --gradient-primary: linear-gradient(135deg, #2f81f7, #238636);
+            --gradient-secondary: linear-gradient(135deg, #f85149, #da3633);
+            --shadow-small: 0 1px 3px rgba(0, 0, 0, 0.5);
+            --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.4);
+            --shadow-large: 0 8px 32px rgba(0, 0, 0, 0.6);
+            --border-radius: 8px;
+            --border-radius-small: 4px;
+            --border-radius-large: 12px;
+            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -13,111 +41,329 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background: #f8f9fa;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
             height: 100vh;
             overflow: hidden;
+            line-height: 1.5;
         }
 
+        /* Header Styles */
         .header {
-            background: white;
-            height: 60px;
+            background: var(--bg-secondary);
+            height: 64px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 20px;
-            border-bottom: 1px solid #e9ecef;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 0 24px;
+            border-bottom: 1px solid var(--border-primary);
+            box-shadow: var(--shadow-small);
             flex-shrink: 0;
+            backdrop-filter: blur(8px);
         }
 
         .header-left {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 24px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
         .logo h1 {
             font-size: 1.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            font-weight: 800;
+            background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            letter-spacing: -0.025em;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--gradient-primary);
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
         }
 
         .project-name {
-            color: #333;
-            font-size: 1rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
             font-weight: 500;
+            padding: 8px 12px;
+            background: var(--bg-tertiary);
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-primary);
         }
 
         .header-right {
             display: flex;
             align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
+            gap: 12px;
         }
 
+        /* Button Styles */
         .btn {
-            background: #667eea;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 6px;
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-primary);
+            padding: 10px 16px;
+            border-radius: var(--border-radius);
             cursor: pointer;
             font-weight: 500;
-            transition: all 0.3s ease;
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.9rem;
+            font-size: 0.875rem;
+            transition: var(--transition);
+            font-family: inherit;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             white-space: nowrap;
+            text-decoration: none;
         }
 
         .btn:hover {
-            background: #5a6fd8;
+            background: var(--bg-quaternary);
+            border-color: var(--border-secondary);
             transform: translateY(-1px);
+            box-shadow: var(--shadow-small);
         }
 
-        .btn-success { background: #28a745; }
-        .btn-success:hover { background: #218838; }
-        .btn-info { background: #17a2b8; }
-        .btn-info:hover { background: #138496; }
-        .btn-warning { background: #ffc107; color: #333; }
-        .btn-warning:hover { background: #e0a800; }
-        .btn-danger { background: #dc3545; }
-        .btn-danger:hover { background: #c82333; }
+        .btn-primary { 
+            background: var(--accent-secondary); 
+            border-color: var(--accent-secondary);
+            color: white;
+        }
+        .btn-primary:hover { 
+            background: #1f6feb; 
+            border-color: #1f6feb;
+        }
 
+        .btn-success { 
+            background: var(--accent-primary); 
+            border-color: var(--accent-primary);
+            color: white;
+        }
+        .btn-success:hover { 
+            background: #2ea043; 
+            border-color: #2ea043;
+        }
+
+        .btn-warning { 
+            background: #d29922; 
+            border-color: #d29922;
+            color: white;
+        }
+        .btn-warning:hover { 
+            background: #bb8009; 
+            border-color: #bb8009;
+        }
+
+        .btn-danger { 
+            background: var(--accent-tertiary); 
+            border-color: var(--accent-tertiary);
+            color: white;
+        }
+        .btn-danger:hover { 
+            background: #c93c37; 
+            border-color: #c93c37;
+        }
+
+        .btn i {
+            font-size: 0.875rem;
+        }
+
+        /* Main Container */
         .main-container {
             display: flex;
-            height: calc(100vh - 60px);
+            height: calc(100vh - 64px);
             overflow: hidden;
         }
 
+        /* Sidebar Styles */
         .sidebar {
-            width: 280px;
-            background: white;
-            border-right: 1px solid #e9ecef;
+            width: 320px;
+            background: var(--bg-secondary);
+            border-right: 1px solid var(--border-primary);
             display: flex;
             flex-direction: column;
             overflow-y: auto;
             flex-shrink: 0;
         }
 
-        /* Layout de celular */
+        .sidebar-section {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-primary);
+        }
+
+        .sidebar-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sidebar-title i {
+            color: var(--accent-secondary);
+        }
+
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .tool-btn {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-primary);
+            padding: 16px 12px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+        }
+
+        .tool-btn:hover {
+            background: var(--accent-secondary);
+            color: white;
+            border-color: var(--accent-secondary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .tool-btn i {
+            font-size: 1.25rem;
+        }
+
+        /* Editor Area */
+        .editor-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: var(--bg-primary);
+            min-width: 0;
+        }
+
+        .editor-toolbar {
+            background: var(--bg-secondary);
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border-primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+            gap: 16px;
+        }
+
+        .toolbar-group {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .toolbar-divider {
+            width: 1px;
+            height: 24px;
+            background: var(--border-primary);
+            margin: 0 8px;
+        }
+
+        .icon-btn {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--border-primary);
+            background: var(--bg-tertiary);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            color: var(--text-secondary);
+        }
+
+        .icon-btn:hover {
+            background: var(--accent-secondary);
+            color: white;
+            border-color: var(--accent-secondary);
+            transform: translateY(-1px);
+        }
+
+        .icon-btn.active {
+            background: var(--accent-secondary);
+            color: white;
+            border-color: var(--accent-secondary);
+        }
+
+        /* Canvas Container */
+        .canvas-container {
+            flex: 1;
+            background: var(--bg-primary);
+            padding: 24px;
+            overflow: auto;
+            position: relative;
+            min-height: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .canvas {
+            background: var(--bg-secondary);
+            min-height: 667px;
+            width: 375px;
+            border-radius: var(--border-radius-large);
+            box-shadow: var(--shadow-large);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid var(--border-primary);
+        }
+
+        .canvas-frame {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg-tertiary);
+            padding: 6px 12px;
+            border-radius: var(--border-radius);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            border: 1px solid var(--border-primary);
+        }
+
+        /* Mobile Layout */
         .mobile-layout {
             display: flex;
             flex-direction: column;
-            height: calc(100vh - 60px);
+            height: calc(100vh - 64px);
         }
 
         .mobile-sidebar {
             width: 100%;
-            height: 120px;
-            background: white;
-            border-bottom: 1px solid #e9ecef;
+            height: 140px;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-primary);
             overflow-x: auto;
             flex-shrink: 0;
         }
@@ -126,162 +372,63 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            background: white;
+            background: var(--bg-primary);
             min-width: 0;
         }
 
         .mobile-canvas-container {
             flex: 1;
-            background: #f8f9fa;
-            padding: 10px;
+            background: var(--bg-primary);
+            padding: 16px;
             overflow: auto;
             position: relative;
             min-height: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
         }
 
         .mobile-canvas {
-            background: white;
-            min-height: 600px;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            background: var(--bg-secondary);
+            min-height: 667px;
+            border-radius: var(--border-radius-large);
+            box-shadow: var(--shadow-large);
             position: relative;
             overflow: hidden;
             width: 375px;
             height: 667px;
             margin: 0 auto;
-            border: 2px solid #333;
+            border: 2px solid var(--border-primary);
         }
 
-        .sidebar-section {
-            padding: 20px;
-            border-bottom: 1px solid #e9ecef;
-        }
-
-        .sidebar-title {
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 15px;
-            font-size: 0.95rem;
-        }
-
-        .tool-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-        }
-
-        .tool-btn {
-            background: #f8f9fa;
-            border: 2px solid #e9ecef;
-            padding: 15px 10px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
-            font-size: 0.85rem;
-            color: #495057;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .tool-btn:hover {
-            background: #667eea;
-            color: white;
-            border-color: #667eea;
-            transform: translateY(-2px);
-        }
-
-        .tool-btn svg {
-            width: 24px;
-            height: 24px;
-        }
-
-        .editor-area {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            background: white;
-            min-width: 0;
-        }
-
-        .editor-toolbar {
-            background: #f8f9fa;
-            padding: 15px 20px;
-            border-bottom: 1px solid #e9ecef;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-shrink: 0;
-        }
-
-        .toolbar-group {
-            display: flex;
-            gap: 8px;
-        }
-
-        .icon-btn {
-            width: 36px;
-            height: 36px;
-            border: none;
-            background: white;
-            border-radius: 6px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            border: 1px solid #e9ecef;
-        }
-
-        .icon-btn:hover {
-            background: #667eea;
-            color: white;
-            border-color: #667eea;
-        }
-
-        .canvas-container {
-            flex: 1;
-            background: #f8f9fa;
-            padding: 20px;
-            overflow: auto;
-            position: relative;
-            min-height: 0;
-        }
-
-        .canvas {
-            background: white;
-            min-height: 600px;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
+        /* Element Styles */
         .element {
             position: absolute;
             border: 2px dashed transparent;
             cursor: move;
             min-width: 50px;
             min-height: 30px;
+            transition: var(--transition);
         }
 
         .element:hover {
-            border-color: #667eea;
+            border-color: var(--accent-secondary);
+            box-shadow: 0 0 0 1px var(--accent-secondary);
         }
 
         .element.selected {
-            border-color: #667eea;
+            border-color: var(--accent-primary);
             border-style: solid;
+            box-shadow: 0 0 0 1px var(--accent-primary);
         }
 
         .element-controls {
             position: absolute;
-            top: -35px;
+            top: -40px;
             right: 0;
             display: none;
             gap: 4px;
+            z-index: 100;
         }
 
         .element.selected .element-controls {
@@ -289,139 +436,278 @@
         }
 
         .control-btn {
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
             border: none;
-            background: #667eea;
-            color: white;
-            border-radius: 4px;
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border-radius: var(--border-radius-small);
             cursor: pointer;
             font-size: 12px;
+            transition: var(--transition);
+            border: 1px solid var(--border-primary);
         }
 
         .control-btn:hover {
-            background: #5a6fd8;
+            background: var(--accent-secondary);
+            border-color: var(--accent-secondary);
         }
 
+        /* Grid and Rulers */
         .canvas.grid-enabled {
             background-image: 
-                linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px);
+                radial-gradient(circle, var(--border-primary) 1px, transparent 1px);
             background-size: 20px 20px;
         }
 
-        .canvas.rulers-enabled {
+        .canvas.rulers-enabled::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
             background-image: 
-                linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px);
+                linear-gradient(90deg, var(--border-primary) 1px, transparent 1px),
+                linear-gradient(var(--border-primary) 1px, transparent 1px);
             background-size: 10px 10px;
-        }
-
-        .canvas-container {
-            position: relative;
-            overflow: auto;
-        }
-
-        .canvas-container.zoomed {
-            transform-origin: top left;
-        }
-
-        .element-group {
-            border: 2px dashed #667eea;
-            position: absolute;
-            cursor: move;
-        }
-
-        .element-group.selected {
-            border-color: #28a745;
-            border-style: solid;
-        }
-
-        .position-indicator {
-            position: absolute;
-            background: rgba(102, 126, 234, 0.8);
-            color: white;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-size: 11px;
             pointer-events: none;
-            z-index: 1000;
+            opacity: 0.3;
         }
 
+        /* Resize Handles */
         .resize-handle {
             position: absolute;
-            width: 8px;
-            height: 8px;
-            background: #667eea;
-            border: 1px solid white;
+            width: 10px;
+            height: 10px;
+            background: var(--accent-primary);
+            border: 2px solid white;
+            border-radius: 50%;
             cursor: pointer;
+            opacity: 0;
+            transition: var(--transition);
         }
-
-        .resize-handle.nw { top: -4px; left: -4px; cursor: nw-resize; }
-        .resize-handle.ne { top: -4px; right: -4px; cursor: ne-resize; }
-        .resize-handle.sw { bottom: -4px; left: -4px; cursor: sw-resize; }
-        .resize-handle.se { bottom: -4px; right: -4px; cursor: se-resize; }
-        .resize-handle.n { top: -4px; left: 50%; transform: translateX(-50%); cursor: n-resize; }
-        .resize-handle.s { bottom: -4px; left: 50%; transform: translateX(-50%); cursor: s-resize; }
-        .resize-handle.w { left: -4px; top: 50%; transform: translateY(-50%); cursor: w-resize; }
-        .resize-handle.e { right: -4px; top: 50%; transform: translateY(-50%); cursor: e-resize; }
 
         .element.selected .resize-handle {
-            display: block;
+            opacity: 1;
         }
 
-        .element .resize-handle {
-            display: none;
-        }
+        .resize-handle.nw { top: -5px; left: -5px; cursor: nw-resize; }
+        .resize-handle.ne { top: -5px; right: -5px; cursor: ne-resize; }
+        .resize-handle.sw { bottom: -5px; left: -5px; cursor: sw-resize; }
+        .resize-handle.se { bottom: -5px; right: -5px; cursor: se-resize; }
+        .resize-handle.n { top: -5px; left: 50%; transform: translateX(-50%); cursor: n-resize; }
+        .resize-handle.s { bottom: -5px; left: 50%; transform: translateX(-50%); cursor: s-resize; }
+        .resize-handle.w { left: -5px; top: 50%; transform: translateY(-50%); cursor: w-resize; }
+        .resize-handle.e { right: -5px; top: 50%; transform: translateY(-50%); cursor: e-resize; }
 
+        /* Code Panel */
         .code-panel {
-            height: 250px;
-            background: #2d3748;
-            color: #e2e8f0;
-            border-top: 1px solid #e9ecef;
+            height: 280px;
+            background: var(--bg-tertiary);
+            border-top: 1px solid var(--border-primary);
             display: flex;
             flex-direction: column;
             flex-shrink: 0;
         }
 
         .code-tabs {
-            background: #1a202c;
+            background: var(--bg-secondary);
             display: flex;
-            padding: 0 10px;
+            padding: 0 16px;
+            border-bottom: 1px solid var(--border-primary);
         }
 
         .code-tab {
             background: transparent;
-            color: #a0aec0;
+            color: var(--text-secondary);
             border: none;
-            padding: 10px 15px;
+            padding: 12px 16px;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 0.875rem;
+            font-weight: 500;
             border-bottom: 2px solid transparent;
+            transition: var(--transition);
         }
 
         .code-tab.active {
-            color: #667eea;
-            border-bottom-color: #667eea;
+            color: var(--accent-secondary);
+            border-bottom-color: var(--accent-secondary);
+        }
+
+        .code-tab:hover:not(.active) {
+            color: var(--text-primary);
         }
 
         .code-content {
             flex: 1;
-            font-family: 'Consolas', 'Monaco', monospace;
+            font-family: 'SF Mono', 'Monaco', 'Cascadia Code', 'Consolas', monospace;
             font-size: 13px;
-            padding: 15px;
+            padding: 16px;
             overflow: auto;
             white-space: pre-wrap;
-            line-height: 1.4;
+            line-height: 1.5;
+            background: var(--bg-primary);
+            color: var(--text-primary);
         }
 
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-content {
+            background: var(--bg-modal);
+            padding: 32px;
+            border-radius: var(--border-radius-large);
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            border: 1px solid var(--border-primary);
+            box-shadow: var(--shadow-large);
+        }
+
+        .modal-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-primary);
+            font-size: 0.875rem;
+        }
+
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-primary);
+            border-radius: var(--border-radius);
+            font-size: 0.875rem;
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            transition: var(--transition);
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--accent-secondary);
+            box-shadow: 0 0 0 3px rgba(47, 129, 247, 0.1);
+        }
+
+        .form-textarea {
+            min-height: 100px;
+            resize: vertical;
+            font-family: 'SF Mono', 'Monaco', monospace;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            margin-top: 24px;
+        }
+
+        /* Position Modal */
+        .position-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1001;
+            backdrop-filter: blur(4px);
+        }
+
+        .position-modal-content {
+            background: var(--bg-modal);
+            padding: 32px;
+            border-radius: var(--border-radius-large);
+            width: 90%;
+            max-width: 450px;
+            border: 1px solid var(--border-primary);
+            box-shadow: var(--shadow-large);
+        }
+
+        .position-inputs, .size-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .position-input, .size-input {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .position-input label, .size-input label {
+            font-weight: 500;
+            color: var(--text-primary);
+            font-size: 0.875rem;
+        }
+
+        .position-input input, .size-input input {
+            padding: 10px;
+            border: 1px solid var(--border-primary);
+            border-radius: var(--border-radius);
+            font-size: 0.875rem;
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+
+        .position-preview {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-primary);
+            border-radius: var(--border-radius);
+            padding: 16px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .position-preview h4 {
+            margin-bottom: 8px;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+
+        .position-preview p {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        /* Preview Overlay */
         .preview-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.9);
+            background: rgba(0, 0, 0, 0.95);
             z-index: 1000;
             display: none;
             align-items: center;
@@ -431,50 +717,61 @@
         .preview-container {
             width: 90%;
             height: 90%;
-            background: white;
-            border-radius: 10px;
+            background: var(--bg-secondary);
+            border-radius: var(--border-radius-large);
             overflow: hidden;
             position: relative;
+            border: 1px solid var(--border-primary);
+            box-shadow: var(--shadow-large);
         }
 
         .preview-header {
-            background: #f8f9fa;
-            padding: 10px 20px;
+            background: var(--bg-tertiary);
+            padding: 16px 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #e9ecef;
+            border-bottom: 1px solid var(--border-primary);
+        }
+
+        .preview-header h3 {
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            font-weight: 600;
         }
 
         .preview-iframe {
             width: 100%;
             height: calc(100% - 60px);
             border: none;
+            background: white;
         }
 
+        /* Loading Overlay */
         .loading-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(255,255,255,0.95);
+            background: rgba(13, 17, 23, 0.95);
             display: none;
             align-items: center;
             justify-content: center;
             z-index: 1001;
+            backdrop-filter: blur(4px);
         }
 
         .loading-content {
             text-align: center;
-            color: #667eea;
+            color: var(--text-primary);
         }
 
         .loading-spinner {
             width: 50px;
             height: 50px;
-            border: 4px solid #e3f2fd;
-            border-top: 4px solid #667eea;
+            border: 3px solid var(--border-primary);
+            border-top: 3px solid var(--accent-secondary);
             border-radius: 50%;
             animation: spin 1s linear infinite;
             margin: 0 auto 20px;
@@ -485,201 +782,50 @@
             100% { transform: rotate(360deg); }
         }
 
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 1002;
-        }
-
-        .modal-content {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            width: 90%;
-            max-width: 500px;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        .modal-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 5px;
+        /* Utility Classes */
+        .position-indicator {
+            position: absolute;
+            background: rgba(47, 129, 247, 0.9);
+            color: white;
+            padding: 4px 8px;
+            border-radius: var(--border-radius-small);
+            font-size: 11px;
+            pointer-events: none;
+            z-index: 1000;
             font-weight: 500;
-            color: #555;
         }
 
-        .form-input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-size: 1rem;
-        }
-
-        .form-textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-size: 1rem;
-            min-height: 100px;
-            resize: vertical;
-        }
-
-        .modal-buttons {
-            display: flex;
-            gap: 10px;
-            justify-content: flex-end;
-            margin-top: 20px;
-        }
-
-        .position-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 1003;
-        }
-
-        .position-modal-content {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            width: 90%;
-            max-width: 400px;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        .position-inputs {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .position-input {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-
-        .position-input label {
-            font-weight: 500;
-            color: #555;
-            font-size: 0.9rem;
-        }
-
-        .position-input input {
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 0.9rem;
-        }
-
-        .size-inputs {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .size-input {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-
-        .size-input label {
-            font-weight: 500;
-            color: #555;
-            font-size: 0.9rem;
-        }
-
-        .size-input input {
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 0.9rem;
-        }
-
-        .position-preview {
-            background: #f8f9fa;
-            border: 1px solid #dee2e6;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .position-preview h4 {
-            margin-bottom: 10px;
-            color: #333;
-        }
-
-        .position-preview p {
-            color: #666;
-            font-size: 0.9rem;
-        }
-
+        /* Responsive Design */
         @media (max-width: 768px) {
             .header {
-                padding: 0 10px;
+                padding: 0 16px;
                 height: auto;
-                min-height: 60px;
+                min-height: 64px;
                 flex-wrap: wrap;
+                gap: 12px;
             }
             
             .header-left {
-                gap: 10px;
+                gap: 16px;
             }
             
             .logo h1 {
-                font-size: 1.2rem;
+                font-size: 1.25rem;
             }
             
             .project-name {
-                font-size: 0.9rem;
+                font-size: 0.85rem;
             }
             
             .header-right {
-                gap: 5px;
-                margin-top: 10px;
+                gap: 8px;
                 width: 100%;
                 justify-content: flex-start;
             }
             
             .btn {
-                padding: 6px 12px;
+                padding: 8px 12px;
                 font-size: 0.8rem;
-            }
-            
-            .btn svg {
-                width: 14px;
-                height: 14px;
             }
             
             .main-container {
@@ -689,93 +835,106 @@
             
             .sidebar {
                 width: 100%;
-                height: 150px;
+                height: 160px;
                 border-right: none;
-                border-bottom: 1px solid #e9ecef;
+                border-bottom: 1px solid var(--border-primary);
                 overflow-x: auto;
             }
             
             .sidebar-section {
-                padding: 15px;
+                padding: 16px;
             }
             
             .tool-grid {
                 grid-template-columns: repeat(6, 1fr);
                 gap: 8px;
-                min-width: 400px;
+                min-width: 500px;
             }
             
             .tool-btn {
-                padding: 10px 5px;
+                padding: 12px 8px;
                 font-size: 0.75rem;
             }
             
-            .tool-btn svg {
-                width: 20px;
-                height: 20px;
+            .tool-btn i {
+                font-size: 1rem;
             }
             
             .editor-area {
-                height: calc(100vh - 230px);
+                height: calc(100vh - 240px);
             }
             
             .editor-toolbar {
-                padding: 10px;
+                padding: 12px 16px;
                 flex-wrap: wrap;
-                gap: 10px;
+                gap: 12px;
             }
             
             .canvas-container {
-                padding: 10px;
+                padding: 16px;
             }
             
             .code-panel {
-                height: 200px;
+                height: 220px;
             }
             
             .code-content {
                 font-size: 12px;
-                padding: 10px;
-            }
-            
-            .preview-container {
-                width: 95%;
-                height: 95%;
+                padding: 12px;
             }
             
             .modal-content {
-                padding: 20px;
-                margin: 10px;
+                padding: 24px;
+                margin: 16px;
             }
         }
 
         @media (max-width: 480px) {
             .header {
-                padding: 0 5px;
+                padding: 0 12px;
             }
             
             .btn {
-                padding: 4px 8px;
+                padding: 6px 10px;
                 font-size: 0.75rem;
             }
             
             .tool-grid {
                 grid-template-columns: repeat(4, 1fr);
-                min-width: 300px;
+                min-width: 320px;
             }
             
             .sidebar {
-                height: 120px;
+                height: 140px;
             }
             
             .canvas-container {
-                padding: 5px;
+                padding: 12px;
             }
             
-            .element {
-                min-width: 40px;
-                min-height: 25px;
+            .canvas, .mobile-canvas {
+                width: 100%;
+                max-width: 375px;
             }
+        }
+
+        /* Scrollbar Styles */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-primary);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--border-secondary);
         }
     </style>
 </head>
@@ -783,33 +942,26 @@
     <div class="header">
         <div class="header-left">
             <div class="logo">
+                <div class="logo-icon">S</div>
                 <h1>Sitefy</h1>
             </div>
-            <div class="project-name" id="projectName">Carregando...</div>
+            <div class="project-name" id="projectName">Carregando projeto...</div>
         </div>
         <div class="header-right">
-            <button class="btn btn-success" onclick="saveProject()">
-                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"/>
-                </svg>
+            <button class="btn btn-success" onclick="saveProject()" title="Salvar projeto (Ctrl+S)">
+                <i class="fas fa-save"></i>
                 Salvar
             </button>
-            <button class="btn btn-info" onclick="showPreview()">
-                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
-                </svg>
+            <button class="btn btn-primary" onclick="showPreview()" title="Visualizar site">
+                <i class="fas fa-eye"></i>
                 Preview
             </button>
-            <button class="btn btn-warning" onclick="downloadHTML()">
-                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-                </svg>
+            <button class="btn btn-warning" onclick="downloadHTML()" title="Baixar HTML">
+                <i class="fas fa-download"></i>
                 Download
             </button>
-            <button class="btn btn-danger" onclick="goHome()">
-                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
-                </svg>
+            <button class="btn btn-danger" onclick="goHome()" title="Voltar ao início">
+                <i class="fas fa-home"></i>
                 Home
             </button>
         </div>
@@ -819,54 +971,41 @@
         <div class="mobile-layout">
             <div class="mobile-sidebar">
                 <div class="sidebar-section">
-                    <div class="sidebar-title">Elementos</div>
-                    <div class="tool-grid" style="grid-template-columns: repeat(8, 1fr); min-width: 600px;">
-                        <div class="tool-btn" onclick="addElement('text')">
-                            <svg fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M5 4v3h5.5v12h3V7H19V4z"/>
-                            </svg>
+                    <div class="sidebar-title">
+                        <i class="fas fa-shapes"></i>
+                        Elementos
+                    </div>
+                    <div class="tool-grid" style="grid-template-columns: repeat(8, 1fr); min-width: 650px;">
+                        <div class="tool-btn" onclick="addElement('text')" title="Adicionar texto">
+                            <i class="fas fa-font"></i>
                             Texto
                         </div>
-                        <div class="tool-btn" onclick="addElement('button')">
-                            <svg fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                            </svg>
+                        <div class="tool-btn" onclick="addElement('button')" title="Adicionar botão">
+                            <i class="fas fa-mouse-pointer"></i>
                             Botão
                         </div>
-                        <div class="tool-btn" onclick="addElement('image')">
-                            <svg fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
-                            </svg>
+                        <div class="tool-btn" onclick="addElement('image')" title="Adicionar imagem">
+                            <i class="fas fa-image"></i>
                             Imagem
                         </div>
-                        <div class="tool-btn" onclick="addElement('header')">
-                            <svg fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/>
-                            </svg>
+                        <div class="tool-btn" onclick="addElement('header')" title="Adicionar cabeçalho">
+                            <i class="fas fa-heading"></i>
                             Header
                         </div>
-                        <div class="tool-btn" onclick="addElement('section')">
-                            <svg fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
-                            </svg>
+                        <div class="tool-btn" onclick="addElement('section')" title="Adicionar seção">
+                            <i class="fas fa-th-large"></i>
                             Section
                         </div>
-                        <div class="tool-btn" onclick="addElement('form')">
-                            <svg fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
-                            </svg>
+                        <div class="tool-btn" onclick="addElement('form')" title="Adicionar formulário">
+                            <i class="fas fa-wpforms"></i>
                             Form
                         </div>
-                        <div class="tool-btn" onclick="addElement('video')">
-                            <svg fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/>
-                            </svg>
+                        <div class="tool-btn" onclick="addElement('video')" title="Adicionar vídeo">
+                            <i class="fas fa-video"></i>
                             Video
                         </div>
-                        <div class="tool-btn" onclick="addElement('footer')">
-                            <svg fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/>
-                            </svg>
+                        <div class="tool-btn" onclick="addElement('footer')" title="Adicionar rodapé">
+                            <i class="fas fa-window-minimize"></i>
                             Footer
                         </div>
                     </div>
@@ -877,73 +1016,76 @@
                 <div class="editor-toolbar">
                     <div class="toolbar-group">
                         <button class="icon-btn" onclick="undo()" title="Desfazer (Ctrl+Z)">
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12.5 8c-2.65 0-5.05.99-6.9 2.6L2 7v9h9l-3.62-3.62c1.39-1.16 3.16-1.88 5.12-1.88 3.54 0 6.55 2.31 7.6 5.5l2.37-.78C21.08 11.03 17.15 8 12.5 8z"/>
-                            </svg>
+                            <i class="fas fa-undo"></i>
                         </button>
                         <button class="icon-btn" onclick="redo()" title="Refazer (Ctrl+Y)">
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M18.4 10.6C16.55 8.99 14.15 8 11.5 8c-4.65 0-8.58 3.03-9.96 7.22L3.9 16c1.05-3.19 4.05-5.5 7.6-5.5 1.95 0 3.73.72 5.12 1.88L13 16h9V7l-3.6 3.6z"/>
-                            </svg>
+                            <i class="fas fa-redo"></i>
                         </button>
+                        <div class="toolbar-divider"></div>
                         <button class="icon-btn" onclick="duplicateElement()" title="Duplicar (Ctrl+D)">
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
-                            </svg>
+                            <i class="fas fa-copy"></i>
                         </button>
                         <button class="icon-btn" onclick="showPositionModal()" title="Posicionar elemento">
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                            </svg>
+                            <i class="fas fa-arrows-alt"></i>
                         </button>
                     </div>
                     
                     <div class="toolbar-group">
                         <button class="icon-btn" onclick="alignLeft()" title="Alinhar à esquerda">
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M15 15H3v2h12v-2zm0-8H3v2h12V7zM3 13h18v-2H3v2zm0 8h18v-2H3v2zM3 3v2h18V3H3z"/>
-                            </svg>
+                            <i class="fas fa-align-left"></i>
                         </button>
                         <button class="icon-btn" onclick="alignCenter()" title="Centralizar">
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M7 15v2h10v-2H7zm-4 6h18v-2H3v2zm0-8h18v-2H3v2zm4-6v2h10V7H7zM3 3v2h18V3H3z"/>
-                            </svg>
+                            <i class="fas fa-align-center"></i>
                         </button>
                         <button class="icon-btn" onclick="alignRight()" title="Alinhar à direita">
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M3 21h18v-2H3v2zm6-4h12v-2H9v2zm-6-4h18v-2H3v2zm6-4h12V7H9v2zM3 3v2h18V3H3z"/>
-                            </svg>
+                            <i class="fas fa-align-right"></i>
+                        </button>
+                        <div class="toolbar-divider"></div>
+                        <button class="icon-btn" onclick="alignTop()" title="Alinhar ao topo">
+                            <i class="fas fa-arrow-up"></i>
+                        </button>
+                        <button class="icon-btn" onclick="alignMiddle()" title="Centralizar verticalmente">
+                            <i class="fas fa-arrows-alt-v"></i>
+                        </button>
+                        <button class="icon-btn" onclick="alignBottom()" title="Alinhar à base">
+                            <i class="fas fa-arrow-down"></i>
                         </button>
                     </div>
                     
                     <div class="toolbar-group">
                         <button class="icon-btn" onclick="bringToFront()" title="Trazer para frente">
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M8 11h3v10h2V11h3l-4-4-4 4zM4 3v2h16V3H4z"/>
-                            </svg>
+                            <i class="fas fa-bring-forward"></i>
                         </button>
                         <button class="icon-btn" onclick="sendToBack()" title="Enviar para trás">
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M16 13h-3V3h-2v10H8l4 4 4-4zM4 19v2h16v-2H4z"/>
-                            </svg>
+                            <i class="fas fa-send-backward"></i>
                         </button>
-                        <button class="icon-btn" onclick="showGrid()" title="Mostrar/Ocultar grade">
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M3 3v8h8V3H3zm6 6H5V5h4v4zm-6 4v8h8v-8H3zm6 6H5v-4h4v4zm4-16v8h8V3h-8zm6 6h-4V5h4v4zm-6 4v8h8v-8h-8zm6 6h-4v-4h4v4z"/>
-                            </svg>
+                        <div class="toolbar-divider"></div>
+                        <button class="icon-btn" onclick="showGrid()" title="Mostrar/Ocultar grade" id="gridBtn">
+                            <i class="fas fa-th"></i>
+                        </button>
+                        <button class="icon-btn" onclick="showRulers()" title="Mostrar/Ocultar réguas" id="rulersBtn">
+                            <i class="fas fa-ruler"></i>
                         </button>
                     </div>
                 </div>
 
                 <div class="mobile-canvas-container">
-                    <div class="mobile-canvas" id="canvas" ondrop="dropElement(event)" ondragover="allowDrop(event)"></div>
+                    <div class="mobile-canvas" id="canvas" ondrop="dropElement(event)" ondragover="allowDrop(event)">
+                        <div class="canvas-frame">Mobile 375x667</div>
+                    </div>
                 </div>
 
                 <div class="code-panel">
                     <div class="code-tabs">
-                        <button class="code-tab active" onclick="showCode('html')">HTML</button>
-                        <button class="code-tab" onclick="showCode('css')">CSS</button>
-                        <button class="code-tab" onclick="showCode('js')">JavaScript</button>
+                        <button class="code-tab active" onclick="showCode('html')">
+                            <i class="fab fa-html5"></i> HTML
+                        </button>
+                        <button class="code-tab" onclick="showCode('css')">
+                            <i class="fab fa-css3-alt"></i> CSS
+                        </button>
+                        <button class="code-tab" onclick="showCode('js')">
+                            <i class="fab fa-js-square"></i> JavaScript
+                        </button>
                     </div>
                     <div class="code-content" id="codeContent"></div>
                 </div>
@@ -951,11 +1093,14 @@
         </div>
     </div>
 
+    <!-- Modals -->
     <div class="preview-overlay" id="previewOverlay">
         <div class="preview-container">
             <div class="preview-header">
-                <h3>Preview do Site</h3>
-                <button class="btn btn-danger" onclick="closePreview()">Fechar</button>
+                <h3><i class="fas fa-eye"></i> Preview do Site</h3>
+                <button class="btn btn-danger" onclick="closePreview()">
+                    <i class="fas fa-times"></i> Fechar
+                </button>
             </div>
             <iframe class="preview-iframe" id="previewFrame"></iframe>
         </div>
@@ -964,7 +1109,8 @@
     <div class="loading-overlay" id="loadingOverlay">
         <div class="loading-content">
             <div class="loading-spinner"></div>
-            <div>Processando...</div>
+            <div><strong>Processando...</strong></div>
+            <div style="margin-top: 8px; color: var(--text-secondary);">Aguarde um momento</div>
         </div>
     </div>
 
@@ -973,15 +1119,21 @@
             <div class="modal-title" id="modalTitle">Editar Elemento</div>
             <div id="modalForm"></div>
             <div class="modal-buttons">
-                <button class="btn btn-danger" onclick="closeModal()">Cancelar</button>
-                <button class="btn btn-success" onclick="saveElement()">Salvar</button>
+                <button class="btn" onclick="closeModal()">
+                    <i class="fas fa-times"></i> Cancelar
+                </button>
+                <button class="btn btn-success" onclick="saveElement()">
+                    <i class="fas fa-check"></i> Salvar
+                </button>
             </div>
         </div>
     </div>
 
     <div class="position-modal" id="positionModal">
         <div class="position-modal-content">
-            <div class="modal-title">Posicionar Elemento</div>
+            <div class="modal-title">
+                <i class="fas fa-arrows-alt"></i> Posicionar Elemento
+            </div>
             
             <div class="position-preview">
                 <h4>Preview da Posição</h4>
@@ -1011,16 +1163,23 @@
             </div>
             
             <div class="modal-buttons">
-                <button class="btn btn-danger" onclick="closePositionModal()">Cancelar</button>
-                <button class="btn btn-success" onclick="applyPosition()">Aplicar</button>
+                <button class="btn" onclick="closePositionModal()">
+                    <i class="fas fa-times"></i> Cancelar
+                </button>
+                <button class="btn btn-success" onclick="applyPosition()">
+                    <i class="fas fa-check"></i> Aplicar
+                </button>
             </div>
         </div>
     </div>
 
+    <!-- Firebase Scripts -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+    
     <script>
+        // Firebase Configuration - MANTIDO EXATAMENTE COMO ORIGINAL
         const firebaseConfig = {
             apiKey: "AIzaSyARvgxnpRiByevuu0lKWzPZ8bzQph9fbww",
             authDomain: "sitefyfend.firebaseapp.com",
@@ -1035,6 +1194,7 @@
         const auth = firebase.auth();
         const database = firebase.database();
 
+        // Global Variables
         let currentUser = null;
         let currentProject = null;
         let projectId = null;
@@ -1043,7 +1203,14 @@
         let history = [];
         let historyIndex = -1;
         let currentCodeTab = 'html';
+        let gridEnabled = false;
+        let rulersEnabled = false;
+        let snapToGridEnabled = false;
+        let currentZoom = 1;
+        let selectedElements = [];
+        let elementGroups = [];
 
+        // Get project ID from URL
         const urlParams = new URLSearchParams(window.location.search);
         projectId = urlParams.get('project');
 
@@ -1052,6 +1219,7 @@
             window.location.href = 'home.html';
         }
 
+        // Auth state change handler
         auth.onAuthStateChanged((user) => {
             if (user) {
                 currentUser = user;
@@ -1061,6 +1229,7 @@
             }
         });
 
+        // Utility Functions
         function showLoading() {
             document.getElementById('loadingOverlay').style.display = 'flex';
         }
@@ -1069,6 +1238,41 @@
             document.getElementById('loadingOverlay').style.display = 'none';
         }
 
+        function showNotification(message, type = 'success') {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${type === 'success' ? 'var(--accent-primary)' : 'var(--accent-tertiary)'};
+                color: white;
+                padding: 12px 20px;
+                border-radius: var(--border-radius);
+                box-shadow: var(--shadow-medium);
+                z-index: 10000;
+                font-weight: 500;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            // Animate in
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        // Project Loading - MANTIDO EXATAMENTE COMO ORIGINAL
         function loadProject() {
             showLoading();
             
@@ -1079,7 +1283,7 @@
                         currentProject = project;
                         document.getElementById('projectName').textContent = project.name;
                         
-                        document.getElementById('canvas').innerHTML = '';
+                        document.getElementById('canvas').innerHTML = '<div class="canvas-frame">Mobile 375x667</div>';
                         
                         if (project.elements && Array.isArray(project.elements)) {
                             project.elements.forEach(element => {
@@ -1108,7 +1312,7 @@
                         currentProject = project;
                         document.getElementById('projectName').textContent = project.name;
                         
-                        document.getElementById('canvas').innerHTML = '';
+                        document.getElementById('canvas').innerHTML = '<div class="canvas-frame">Mobile 375x667</div>';
                         
                         if (project.elements && Array.isArray(project.elements)) {
                             project.elements.forEach(element => {
@@ -1131,6 +1335,7 @@
                 });
         }
 
+        // HTML Parsing Functions - MANTIDAS COMO ORIGINAL
         function parseHTMLToElements(html) {
             const parser = new DOMParser();
             const doc = parser.parseFromString(html, 'text/html');
@@ -1204,51 +1409,27 @@
                 .trim();
         }
 
-        // Variáveis globais para novas funcionalidades
-        let gridEnabled = false;
-        let rulersEnabled = false;
-        let snapToGridEnabled = false;
-        let currentZoom = 1;
-        let selectedElements = [];
-        let elementGroups = [];
-
-        // Funções de zoom
-        function zoomIn() {
-            if (currentZoom < 3) {
-                currentZoom += 0.25;
-                applyZoom();
-            }
-        }
-
-        function zoomOut() {
-            if (currentZoom > 0.25) {
-                currentZoom -= 0.25;
-                applyZoom();
-            }
-        }
-
-        function resetZoom() {
-            currentZoom = 1;
-            applyZoom();
-        }
-
-        function applyZoom() {
-            const container = document.querySelector('.canvas-container');
-            container.style.transform = `scale(${currentZoom})`;
-            container.classList.toggle('zoomed', currentZoom !== 1);
-        }
-
-        // Funções de grade e réguas
+        // Enhanced Grid and Rulers Functions
         function showGrid() {
             gridEnabled = !gridEnabled;
             const canvas = document.getElementById('canvas');
+            const gridBtn = document.getElementById('gridBtn');
+            
             canvas.classList.toggle('grid-enabled', gridEnabled);
+            gridBtn.classList.toggle('active', gridEnabled);
+            
+            showNotification(gridEnabled ? 'Grade ativada' : 'Grade desativada');
         }
 
         function showRulers() {
             rulersEnabled = !rulersEnabled;
             const canvas = document.getElementById('canvas');
+            const rulersBtn = document.getElementById('rulersBtn');
+            
             canvas.classList.toggle('rulers-enabled', rulersEnabled);
+            rulersBtn.classList.toggle('active', rulersEnabled);
+            
+            showNotification(rulersEnabled ? 'Réguas ativadas' : 'Réguas desativadas');
         }
 
         function snapToGrid() {
@@ -1266,12 +1447,48 @@
             element.style.top = y + 'px';
         }
 
-        // Funções de alinhamento vertical
+        // Enhanced Alignment Functions
+        function alignLeft() {
+            if (selectedElement) {
+                selectedElement.style.left = '10px';
+                saveToHistory();
+                autoSave();
+                showNotification('Elemento alinhado à esquerda');
+            }
+        }
+
+        function alignCenter() {
+            if (selectedElement) {
+                const canvas = document.getElementById('canvas');
+                const canvasWidth = canvas.offsetWidth;
+                const elementWidth = parseInt(selectedElement.style.width) || selectedElement.offsetWidth;
+                const newLeft = Math.max(0, (canvasWidth - elementWidth) / 2);
+                selectedElement.style.left = newLeft + 'px';
+                saveToHistory();
+                autoSave();
+                showNotification('Elemento centralizado horizontalmente');
+            }
+        }
+
+        function alignRight() {
+            if (selectedElement) {
+                const canvas = document.getElementById('canvas');
+                const canvasWidth = canvas.offsetWidth;
+                const elementWidth = parseInt(selectedElement.style.width) || selectedElement.offsetWidth;
+                const newLeft = Math.max(0, canvasWidth - elementWidth - 10);
+                selectedElement.style.left = newLeft + 'px';
+                saveToHistory();
+                autoSave();
+                showNotification('Elemento alinhado à direita');
+            }
+        }
+
         function alignTop() {
             if (selectedElement) {
                 selectedElement.style.top = '10px';
                 saveToHistory();
                 autoSave();
+                showNotification('Elemento alinhado ao topo');
             }
         }
 
@@ -1284,6 +1501,7 @@
                 selectedElement.style.top = newTop + 'px';
                 saveToHistory();
                 autoSave();
+                showNotification('Elemento centralizado verticalmente');
             }
         }
 
@@ -1296,29 +1514,37 @@
                 selectedElement.style.top = newTop + 'px';
                 saveToHistory();
                 autoSave();
+                showNotification('Elemento alinhado à base');
             }
         }
 
-        // Funções de camadas
+        // Layer Functions
         function bringToFront() {
             if (selectedElement) {
                 const canvas = document.getElementById('canvas');
                 canvas.appendChild(selectedElement);
                 saveToHistory();
                 autoSave();
+                showNotification('Elemento movido para frente');
             }
         }
 
         function sendToBack() {
             if (selectedElement) {
                 const canvas = document.getElementById('canvas');
-                canvas.insertBefore(selectedElement, canvas.firstChild);
+                const frameElement = canvas.querySelector('.canvas-frame');
+                if (frameElement) {
+                    canvas.insertBefore(selectedElement, frameElement.nextSibling);
+                } else {
+                    canvas.insertBefore(selectedElement, canvas.firstChild);
+                }
                 saveToHistory();
                 autoSave();
+                showNotification('Elemento movido para trás');
             }
         }
 
-        // Funções de duplicação
+        // Enhanced Duplication
         function duplicateElement() {
             if (selectedElement) {
                 const newElement = selectedElement.cloneNode(true);
@@ -1326,22 +1552,26 @@
                 newElement.id = newId;
                 newElement.classList.remove('selected');
                 
-                // Ajustar posição
+                // Adjust position
                 const currentLeft = parseInt(selectedElement.style.left) || 0;
                 const currentTop = parseInt(selectedElement.style.top) || 0;
                 newElement.style.left = (currentLeft + 20) + 'px';
                 newElement.style.top = (currentTop + 20) + 'px';
                 
-                // Atualizar controles
+                // Update controls
                 const controls = newElement.querySelector('.element-controls');
                 if (controls) {
                     controls.innerHTML = `
-                        <button class="control-btn" onclick="editElement('${newId}')">✏️</button>
-                        <button class="control-btn" onclick="deleteElement('${newId}')">🗑️</button>
+                        <button class="control-btn" onclick="editElement('${newId}')" title="Editar">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="control-btn" onclick="deleteElement('${newId}')" title="Excluir">
+                            <i class="fas fa-trash"></i>
+                        </button>
                     `;
                 }
                 
-                // Adicionar funcionalidades
+                // Add functionalities
                 newElement.onclick = (e) => {
                     e.stopPropagation();
                     selectElement(newElement, e);
@@ -1354,60 +1584,286 @@
                 updateCodePanel();
                 saveToHistory();
                 autoSave();
+                showNotification('Elemento duplicado');
             }
         }
 
-        // Funções de agrupamento
-        function groupElements() {
-            if (selectedElements.length > 1) {
-                const group = {
-                    id: 'group_' + Date.now(),
-                    elements: [...selectedElements],
-                    x: Math.min(...selectedElements.map(el => parseInt(el.style.left) || 0)),
-                    y: Math.min(...selectedElements.map(el => parseInt(el.style.top) || 0)),
-                    width: Math.max(...selectedElements.map(el => (parseInt(el.style.left) || 0) + (parseInt(el.style.width) || 200))) - Math.min(...selectedElements.map(el => parseInt(el.style.left) || 0)),
-                    height: Math.max(...selectedElements.map(el => (parseInt(el.style.top) || 0) + (parseInt(el.style.height) || 50))) - Math.min(...selectedElements.map(el => parseInt(el.style.top) || 0))
-                };
+        // Element Creation Functions
+        function addElement(type) {
+            const canvas = document.getElementById('canvas');
+            const existingElements = Array.from(canvas.querySelectorAll('.element'));
+            let x = 50, y = 100; // Start below frame
+            
+            if (existingElements.length > 0) {
+                let maxX = 0, maxY = 100;
+                existingElements.forEach(el => {
+                    const elX = parseInt(el.style.left) || 0;
+                    const elY = parseInt(el.style.top) || 0;
+                    const elWidth = parseInt(el.style.width) || 200;
+                    const elHeight = parseInt(el.style.height) || 50;
+                    
+                    if (elX + elWidth > maxX) maxX = elX + elWidth;
+                    if (elY + elHeight > maxY) maxY = elY + elHeight;
+                });
                 
-                elementGroups.push(group);
-                selectedElements.forEach(el => el.style.display = 'none');
-                createGroupElement(group);
-                selectedElements = [];
-                selectedElement = null;
-            }
-        }
-
-        function ungroupElements() {
-            if (selectedElement && selectedElement.classList.contains('element-group')) {
-                const groupId = selectedElement.dataset.groupId;
-                const group = elementGroups.find(g => g.id === groupId);
-                if (group) {
-                    group.elements.forEach(el => el.style.display = 'block');
-                    selectedElement.remove();
-                    elementGroups = elementGroups.filter(g => g.id !== groupId);
+                if (maxX + 200 < canvas.offsetWidth) {
+                    x = maxX + 20;
+                    y = 100;
+                } else {
+                    x = 50;
+                    y = maxY + 20;
                 }
             }
-        }
-
-        function createGroupElement(group) {
-            const groupElement = document.createElement('div');
-            groupElement.className = 'element element-group';
-            groupElement.dataset.groupId = group.id;
-            groupElement.style.left = group.x + 'px';
-            groupElement.style.top = group.y + 'px';
-            groupElement.style.width = group.width + 'px';
-            groupElement.style.height = group.height + 'px';
             
-            groupElement.onclick = (e) => {
-                e.stopPropagation();
-                selectElement(groupElement, e);
+            const element = {
+                id: 'element_' + (++elementCounter),
+                type: type,
+                x: x,
+                y: y,
+                width: getDefaultWidth(type),
+                height: getDefaultHeight(type),
+                content: getDefaultContent(type),
+                styles: getDefaultStyles(type)
             };
             
-            makeDraggable(groupElement);
-            document.getElementById('canvas').appendChild(groupElement);
+            addElementToCanvas(element);
+            updateCodePanel();
+            saveToHistory();
+            autoSave();
+            showNotification(`${type.charAt(0).toUpperCase() + type.slice(1)} adicionado`);
         }
 
-        // Função para adicionar handles de redimensionamento
+        // Default Element Properties - MANTIDAS COMO ORIGINAL
+        function getDefaultWidth(type) {
+            switch(type) {
+                case 'text': return 200;
+                case 'button': return 120;
+                case 'image': return 200;
+                case 'header': return 350;
+                case 'footer': return 350;
+                case 'section': return 300;
+                case 'nav': return 350;
+                case 'aside': return 250;
+                case 'main': return 320;
+                case 'form': return 300;
+                case 'textarea': return 250;
+                case 'select': return 200;
+                case 'video': return 300;
+                case 'audio': return 250;
+                case 'iframe': return 300;
+                case 'canvas': return 250;
+                case 'table': return 300;
+                default: return 200;
+            }
+        }
+
+        function getDefaultHeight(type) {
+            switch(type) {
+                case 'text': return 30;
+                case 'button': return 40;
+                case 'image': return 150;
+                case 'header': return 80;
+                case 'footer': return 60;
+                case 'section': return 200;
+                case 'nav': return 50;
+                case 'aside': return 300;
+                case 'main': return 400;
+                case 'form': return 150;
+                case 'textarea': return 100;
+                case 'select': return 35;
+                case 'video': return 180;
+                case 'audio': return 50;
+                case 'iframe': return 200;
+                case 'canvas': return 150;
+                case 'table': return 100;
+                default: return 50;
+            }
+        }
+
+        function getDefaultContent(type) {
+            switch(type) {
+                case 'text': return 'Texto editável';
+                case 'button': return 'Botão';
+                case 'image': return 'https://via.placeholder.com/200x150/667eea/ffffff?text=Imagem';
+                case 'div': return 'Container';
+                case 'input': return 'Digite aqui...';
+                case 'link': return 'Link';
+                case 'header': return '<h1 style="margin:0; padding:20px; text-align:center;">Cabeçalho</h1>';
+                case 'footer': return '<p style="margin:0; padding:20px; text-align:center;">Rodapé</p>';
+                case 'section': return '<h2 style="margin:0 0 15px 0;">Seção</h2><p style="margin:0;">Conteúdo da seção</p>';
+                case 'nav': return '<a href="#" style="margin-right:15px;">Início</a><a href="#" style="margin-right:15px;">Sobre</a><a href="#">Contato</a>';
+                case 'aside': return '<h3 style="margin:0 0 10px 0;">Barra lateral</h3><p style="margin:0;">Conteúdo lateral</p>';
+                case 'main': return '<h1 style="margin:0 0 15px 0;">Conteúdo Principal</h1><p style="margin:0;">Conteúdo principal da página</p>';
+                case 'form': return '<form style="display:flex; flex-direction:column; gap:10px;"><input type="text" placeholder="Nome" style="padding:8px; border:1px solid #ccc; border-radius:4px;"><input type="email" placeholder="Email" style="padding:8px; border:1px solid #ccc; border-radius:4px;"><button type="submit" style="padding:10px; background:#667eea; color:white; border:none; border-radius:4px; cursor:pointer;">Enviar</button></form>';
+                case 'textarea': return 'Digite seu texto aqui...';
+                case 'select': return '<select style="width:100%; padding:8px;"><option>Opção 1</option><option>Opção 2</option><option>Opção 3</option></select>';
+                case 'video': return '<video controls style="width:100%; height:auto;"><source src="#" type="video/mp4">Seu navegador não suporta vídeo.</video>';
+                default: return '';
+            }
+        }
+
+        function getDefaultStyles(type) {
+            const baseStyles = 'font-family: Inter, sans-serif;';
+            switch(type) {
+                case 'text': return baseStyles + ' font-size: 16px; color: #333; line-height: 1.5;';
+                case 'button': return baseStyles + ' background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: 500; transition: transform 0.2s;';
+                case 'image': return 'max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.1);';
+                case 'div': return baseStyles + ' background: #f8f9fa; border: 1px solid #dee2e6; padding: 20px; border-radius: 8px;';
+                case 'input': return baseStyles + ' border: 1px solid #dee2e6; padding: 12px; border-radius: 6px; font-size: 14px; width: 100%;';
+                case 'link': return baseStyles + ' color: #667eea; text-decoration: none; font-weight: 500;';
+                case 'header': return baseStyles + ' background: linear-gradient(135deg, #667eea, #764ba2); color: white; border-radius: 8px;';
+                case 'footer': return baseStyles + ' background: #f8f9fa; border-top: 1px solid #dee2e6; color: #6c757d; border-radius: 8px;';
+                case 'section': return baseStyles + ' background: white; border: 1px solid #dee2e6; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);';
+                case 'nav': return baseStyles + ' background: #f8f9fa; padding: 15px 20px; border-radius: 8px; border: 1px solid #dee2e6;';
+                case 'form': return baseStyles + ' background: #f8f9fa; padding: 24px; border-radius: 12px; border: 1px solid #dee2e6;';
+                default: return baseStyles;
+            }
+        }
+
+        function addElementToCanvas(elementData) {
+            const canvas = document.getElementById('canvas');
+            const element = document.createElement('div');
+            
+            element.className = 'element';
+            element.id = elementData.id;
+            element.dataset.type = elementData.type;
+            element.dataset.content = elementData.content;
+            element.dataset.styles = elementData.styles;
+            
+            element.style.left = elementData.x + 'px';
+            element.style.top = elementData.y + 'px';
+            element.style.width = elementData.width + 'px';
+            element.style.height = elementData.height + 'px';
+            
+            element.innerHTML = `
+                ${createElement(elementData.type, elementData.content, elementData.styles)}
+                <div class="element-controls">
+                    <button class="control-btn" onclick="editElement('${elementData.id}')" title="Editar">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="control-btn" onclick="deleteElement('${elementData.id}')" title="Excluir">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            `;
+            
+            element.onclick = (e) => {
+                e.stopPropagation();
+                selectElement(element, e);
+            };
+            
+            element.onmousemove = (e) => {
+                if (element.classList.contains('selected')) {
+                    showPositionIndicator(element, e);
+                }
+            };
+            
+            makeDraggable(element);
+            addResizeHandles(element);
+            canvas.appendChild(element);
+        }
+
+        function createElement(type, content, styles) {
+            switch(type) {
+                case 'text':
+                    return `<p style="${styles}">${content}</p>`;
+                case 'button':
+                    return `<button style="${styles}" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">${content}</button>`;
+                case 'image':
+                    return `<img src="${content}" style="${styles}" alt="Imagem" loading="lazy">`;
+                case 'div':
+                    return `<div style="${styles}">${content}</div>`;
+                case 'input':
+                    return `<input type="text" placeholder="${content}" style="${styles}">`;
+                case 'link':
+                    return `<a href="#" style="${styles}">${content}</a>`;
+                case 'header':
+                    return `<header style="${styles}">${content}</header>`;
+                case 'footer':
+                    return `<footer style="${styles}">${content}</footer>`;
+                case 'section':
+                    return `<section style="${styles}">${content}</section>`;
+                case 'nav':
+                    return `<nav style="${styles}">${content}</nav>`;
+                case 'form':
+                    return `<div style="${styles}">${content}</div>`;
+                case 'textarea':
+                    return `<textarea placeholder="${content}" style="${styles}"></textarea>`;
+                case 'select':
+                    return `<div style="${styles}">${content}</div>`;
+                case 'video':
+                    return `<div style="${styles}">${content}</div>`;
+                default:
+                    return `<div style="${styles}">${content}</div>`;
+            }
+        }
+
+        // Enhanced Drag and Drop
+        function makeDraggable(element) {
+            let isDragging = false;
+            let startX, startY, startLeft, startTop;
+            
+            element.onmousedown = (e) => {
+                if (e.target.classList.contains('control-btn') || 
+                    e.target.classList.contains('resize-handle') ||
+                    e.target.tagName === 'I') return;
+                    
+                isDragging = true;
+                startX = e.clientX;
+                startY = e.clientY;
+                startLeft = parseInt(element.style.left) || 0;
+                startTop = parseInt(element.style.top) || 0;
+                selectElement(element);
+                e.preventDefault();
+                
+                document.body.style.cursor = 'grabbing';
+            };
+            
+            document.onmousemove = (e) => {
+                if (!isDragging) return;
+                
+                let newLeft = startLeft + (e.clientX - startX);
+                let newTop = startTop + (e.clientY - startY);
+                
+                // Boundaries
+                const canvas = document.getElementById('canvas');
+                const maxLeft = canvas.offsetWidth - (parseInt(element.style.width) || 200);
+                const maxTop = canvas.offsetHeight - (parseInt(element.style.height) || 50);
+                
+                newLeft = Math.max(0, Math.min(newLeft, maxLeft));
+                newTop = Math.max(0, Math.min(newTop, maxTop));
+                
+                // Snap to grid
+                if (snapToGridEnabled) {
+                    const gridSize = 20;
+                    newLeft = Math.round(newLeft / gridSize) * gridSize;
+                    newTop = Math.round(newTop / gridSize) * gridSize;
+                }
+                
+                element.style.left = newLeft + 'px';
+                element.style.top = newTop + 'px';
+            };
+            
+            document.onmouseup = (e) => {
+                if (isDragging) {
+                    isDragging = false;
+                    document.body.style.cursor = 'default';
+                    saveToHistory();
+                    autoSave();
+                }
+            };
+        }
+
+        function selectElement(element, event) {
+            // Clear previous selections
+            document.querySelectorAll('.element').forEach(el => el.classList.remove('selected'));
+            
+            element.classList.add('selected');
+            selectedElement = element;
+            selectedElements = [element];
+        }
+
+        // Enhanced Resize Handles
         function addResizeHandles(element) {
             const handles = ['nw', 'ne', 'sw', 'se', 'n', 's', 'w', 'e'];
             handles.forEach(pos => {
@@ -1438,25 +1894,29 @@
                 let newLeft = startLeft;
                 let newTop = startTop;
                 
-                if (position.includes('e')) newWidth = startWidth + deltaX;
+                if (position.includes('e')) newWidth = Math.max(50, startWidth + deltaX);
                 if (position.includes('w')) {
-                    newWidth = startWidth - deltaX;
-                    newLeft = startLeft + deltaX;
+                    newWidth = Math.max(50, startWidth - deltaX);
+                    newLeft = startLeft + (startWidth - newWidth);
                 }
-                if (position.includes('s')) newHeight = startHeight + deltaY;
+                if (position.includes('s')) newHeight = Math.max(30, startHeight + deltaY);
                 if (position.includes('n')) {
-                    newHeight = startHeight - deltaY;
-                    newTop = startTop + deltaY;
+                    newHeight = Math.max(30, startHeight - deltaY);
+                    newTop = startTop + (startHeight - newHeight);
                 }
                 
-                if (newWidth > 50) {
-                    element.style.width = newWidth + 'px';
-                    element.style.left = newLeft + 'px';
-                }
-                if (newHeight > 30) {
-                    element.style.height = newHeight + 'px';
-                    element.style.top = newTop + 'px';
-                }
+                // Apply constraints
+                const canvas = document.getElementById('canvas');
+                const maxWidth = canvas.offsetWidth - newLeft;
+                const maxHeight = canvas.offsetHeight - newTop;
+                
+                newWidth = Math.min(newWidth, maxWidth);
+                newHeight = Math.min(newHeight, maxHeight);
+                
+                element.style.width = newWidth + 'px';
+                element.style.height = newHeight + 'px';
+                element.style.left = newLeft + 'px';
+                element.style.top = newTop + 'px';
             }
             
             function onMouseUp() {
@@ -1470,8 +1930,11 @@
             document.addEventListener('mouseup', onMouseUp);
         }
 
-        // Função para mostrar posição do elemento
+        // Position Indicator
         function showPositionIndicator(element, e) {
+            // Remove existing indicators
+            document.querySelectorAll('.position-indicator').forEach(ind => ind.remove());
+            
             const indicator = document.createElement('div');
             indicator.className = 'position-indicator';
             indicator.textContent = `X: ${parseInt(element.style.left) || 0}, Y: ${parseInt(element.style.top) || 0}`;
@@ -1479,13 +1942,13 @@
             indicator.style.top = e.clientY - 30 + 'px';
             document.body.appendChild(indicator);
             
-            setTimeout(() => indicator.remove(), 2000);
+            setTimeout(() => indicator.remove(), 1500);
         }
 
-        // Funções do modal de posicionamento
+        // Position Modal Functions
         function showPositionModal() {
             if (!selectedElement) {
-                alert('Selecione um elemento primeiro');
+                showNotification('Selecione um elemento primeiro', 'error');
                 return;
             }
             
@@ -1521,9 +1984,10 @@
             const width = parseInt(document.getElementById('sizeWidth').value) || 200;
             const height = parseInt(document.getElementById('sizeHeight').value) || 50;
             
-            // Validar limites do canvas de celular
-            const maxX = 375 - width;
-            const maxY = 667 - height;
+            // Validate canvas bounds
+            const canvas = document.getElementById('canvas');
+            const maxX = canvas.offsetWidth - width;
+            const maxY = canvas.offsetHeight - height;
             
             const finalX = Math.max(0, Math.min(x, maxX));
             const finalY = Math.max(0, Math.min(y, maxY));
@@ -1536,17 +2000,303 @@
             closePositionModal();
             saveToHistory();
             autoSave();
+            showNotification('Posição aplicada');
         }
 
-        // Adicionar event listeners para atualizar preview
-        document.addEventListener('DOMContentLoaded', function() {
-            const posX = document.getElementById('posX');
-            const posY = document.getElementById('posY');
+        // Modal Functions
+        function editElement(elementId) {
+            const element = document.getElementById(elementId);
+            if (!element) return;
             
-            if (posX) posX.addEventListener('input', updatePositionPreview);
-            if (posY) posY.addEventListener('input', updatePositionPreview);
-        });
+            selectedElement = element;
+            const type = element.dataset.type;
+            const content = element.dataset.content;
+            const styles = element.dataset.styles;
+            
+            document.getElementById('modalTitle').innerHTML = `<i class="fas fa-edit"></i> Editar ${type.charAt(0).toUpperCase() + type.slice(1)}`;
+            
+            let formHTML = '';
+            if (type === 'text' || type === 'button' || type === 'link') {
+                formHTML = `
+                    <div class="form-group">
+                        <label class="form-label"><i class="fas fa-font"></i> Conteúdo:</label>
+                        <input type="text" class="form-input" id="elementContent" value="${content}">
+                    </div>
+                `;
+            } else if (type === 'image') {
+                formHTML = `
+                    <div class="form-group">
+                        <label class="form-label"><i class="fas fa-link"></i> URL da Imagem:</label>
+                        <input type="text" class="form-input" id="elementContent" value="${content}">
+                    </div>
+                `;
+            } else if (type === 'input') {
+                formHTML = `
+                    <div class="form-group">
+                        <label class="form-label"><i class="fas fa-tag"></i> Placeholder:</label>
+                        <input type="text" class="form-input" id="elementContent" value="${content}">
+                    </div>
+                `;
+            } else {
+                formHTML = `
+                    <div class="form-group">
+                        <label class="form-label"><i class="fas fa-code"></i> Conteúdo HTML:</label>
+                        <textarea class="form-textarea" id="elementContent">${content}</textarea>
+                    </div>
+                `;
+            }
+            
+            formHTML += `
+                <div class="form-group">
+                    <label class="form-label"><i class="fas fa-paint-brush"></i> Estilos CSS:</label>
+                    <textarea class="form-textarea" id="elementStyles">${styles}</textarea>
+                </div>
+            `;
+            
+            document.getElementById('modalForm').innerHTML = formHTML;
+            document.getElementById('elementModal').style.display = 'flex';
+        }
 
+        function saveElement() {
+            if (!selectedElement) return;
+            
+            const content = document.getElementById('elementContent').value;
+            const styles = document.getElementById('elementStyles').value;
+            
+            selectedElement.dataset.content = content;
+            selectedElement.dataset.styles = styles;
+            
+            const type = selectedElement.dataset.type;
+            const elementHTML = createElement(type, content, styles);
+            
+            const controlsHTML = selectedElement.querySelector('.element-controls').outerHTML;
+            const resizeHandles = Array.from(selectedElement.querySelectorAll('.resize-handle')).map(h => h.outerHTML).join('');
+            selectedElement.innerHTML = elementHTML + controlsHTML + resizeHandles;
+            
+            closeModal();
+            updateCodePanel();
+            saveToHistory();
+            autoSave();
+            showNotification('Elemento atualizado');
+        }
+
+        function deleteElement(elementId) {
+            if (confirm('Tem certeza que deseja excluir este elemento?')) {
+                const element = document.getElementById(elementId);
+                if (element) {
+                    element.remove();
+                    updateCodePanel();
+                    saveToHistory();
+                    autoSave();
+                    showNotification('Elemento excluído');
+                }
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('elementModal').style.display = 'none';
+        }
+
+        // Enhanced Code Generation
+        function generateHTML() {
+            const elements = Array.from(document.querySelectorAll('.element'));
+            
+            let bodyHTML = '';
+            elements.forEach(element => {
+                const type = element.dataset.type;
+                const content = element.dataset.content;
+                const styles = element.dataset.styles;
+                const x = parseInt(element.style.left) || 0;
+                const y = parseInt(element.style.top) || 0;
+                const width = parseInt(element.style.width) || 200;
+                const height = parseInt(element.style.height) || 50;
+                
+                const positionStyles = `position: absolute; left: ${x}px; top: ${y}px; width: ${width}px; height: ${height}px; ${styles}`;
+                bodyHTML += '    ' + createElement(type, content, positionStyles) + '\n';
+            });
+            
+            return `<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${currentProject ? currentProject.name : 'Projeto Sitefy'}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            position: relative;
+            min-height: 100vh;
+            max-width: 375px;
+            margin: 0 auto;
+            background: #f8f9fa;
+            overflow-x: hidden;
+        }
+        
+        img, video, iframe {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            transition: transform 0.2s ease;
+        }
+        
+        a {
+            transition: color 0.2s ease;
+        }
+        
+        a:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+${bodyHTML}</body>
+</html>`;
+        }
+
+        function generateCSS() {
+            return `/* CSS customizado para mobile - Tema Dark */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    position: relative;
+    min-height: 100vh;
+    max-width: 375px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, #0d1117, #161b22);
+    color: #f0f6fc;
+    overflow-x: hidden;
+}
+
+/* Elementos responsivos */
+img, video, iframe {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+button {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+
+a {
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+a:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
+/* Estilos responsivos */
+@media (max-width: 375px) {
+    body {
+        padding: 10px;
+    }
+    
+    * {
+        font-size: inherit;
+    }
+}
+
+/* Animações suaves */
+* {
+    transition: all 0.2s ease;
+}
+
+/* Adicione seus estilos personalizados aqui */`;
+        }
+
+        function generateJS() {
+            return `// JavaScript personalizado - Sitefy Editor
+console.log("🚀 Site criado com Sitefy Dark Editor!");
+
+// Animações suaves para botões
+document.addEventListener('DOMContentLoaded', function() {
+    // Adicionar efeitos hover aos botões
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach(button => {
+        button.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-2px)';
+        });
+        
+        button.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+    
+    // Efeito de fade-in para elementos
+    const elements = document.querySelectorAll('section, header, footer');
+    elements.forEach((element, index) => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(20px)';
+        
+        setTimeout(() => {
+            element.style.transition = 'all 0.6s ease';
+            element.style.opacity = '1';
+            element.style.transform = 'translateY(0)';
+        }, index * 200);
+    });
+});
+
+// Função para scroll suave
+function smoothScroll(target) {
+    document.querySelector(target).scrollIntoView({
+        behavior: 'smooth'
+    });
+}
+
+// Adicione seu código JavaScript personalizado aqui`;
+        }
+
+        function updateCodePanel() {
+            showCode(currentCodeTab);
+        }
+
+        function showCode(type) {
+            currentCodeTab = type;
+            document.querySelectorAll('.code-tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelector(`.code-tab[onclick*="${type}"]`).classList.add('active');
+            
+            const codeContent = document.getElementById('codeContent');
+            
+            switch(type) {
+                case 'html':
+                    codeContent.textContent = generateHTML();
+                    break;
+                case 'css':
+                    codeContent.textContent = generateCSS();
+                    break;
+                case 'js':
+                    codeContent.textContent = generateJS();
+                    break;
+            }
+        }
+
+        // Project Management - MANTIDAS COMO ORIGINAL
         function saveProject() {
             if (!currentProject) return;
             
@@ -1578,7 +2328,7 @@
                     localProjects[projectId] = updatedProject;
                     localStorage.setItem('sitefy_projects', JSON.stringify(localProjects));
                     
-                    console.log('Projeto salvo com sucesso!');
+                    showNotification('Projeto salvo com sucesso!');
                 })
                 .catch((error) => {
                     console.error('Erro ao salvar no Firebase:', error);
@@ -1589,527 +2339,8 @@
                     
                     currentProject = updatedProject;
                     hideLoading();
-                    console.log('Projeto salvo localmente');
+                    showNotification('Projeto salvo localmente');
                 });
-        }
-
-        function addElement(type) {
-            // Calcular posição inteligente para evitar sobreposição
-            const canvas = document.getElementById('canvas');
-            const existingElements = Array.from(canvas.querySelectorAll('.element'));
-            let x = 50, y = 50;
-            
-            if (existingElements.length > 0) {
-                // Encontrar a posição mais baixa e à direita
-                let maxX = 0, maxY = 0;
-                existingElements.forEach(el => {
-                    const elX = parseInt(el.style.left) || 0;
-                    const elY = parseInt(el.style.top) || 0;
-                    const elWidth = parseInt(el.style.width) || 200;
-                    const elHeight = parseInt(el.style.height) || 50;
-                    
-                    if (elX + elWidth > maxX) maxX = elX + elWidth;
-                    if (elY + elHeight > maxY) maxY = elY + elHeight;
-                });
-                
-                // Posicionar o novo elemento abaixo ou à direita
-                if (maxX + 200 < canvas.offsetWidth) {
-                    x = maxX + 20;
-                    y = 50;
-                } else {
-                    x = 50;
-                    y = maxY + 20;
-                }
-            }
-            
-            const element = {
-                id: 'element_' + (++elementCounter),
-                type: type,
-                x: x,
-                y: y,
-                width: getDefaultWidth(type),
-                height: getDefaultHeight(type),
-                content: getDefaultContent(type),
-                styles: getDefaultStyles(type)
-            };
-            
-            addElementToCanvas(element);
-            updateCodePanel();
-            saveToHistory();
-            autoSave();
-        }
-
-        function getDefaultWidth(type) {
-            switch(type) {
-                case 'text': return 200;
-                case 'button': return 120;
-                case 'image': return 200;
-                case 'header': return 800;
-                case 'footer': return 800;
-                case 'section': return 600;
-                case 'nav': return 800;
-                case 'aside': return 250;
-                case 'main': return 700;
-                case 'form': return 400;
-                case 'textarea': return 300;
-                case 'select': return 200;
-                case 'video': return 400;
-                case 'audio': return 300;
-                case 'iframe': return 400;
-                case 'canvas': return 300;
-                case 'table': return 500;
-                default: return 200;
-            }
-        }
-
-        function getDefaultHeight(type) {
-            switch(type) {
-                case 'text': return 30;
-                case 'button': return 40;
-                case 'image': return 150;
-                case 'header': return 80;
-                case 'footer': return 60;
-                case 'section': return 200;
-                case 'nav': return 50;
-                case 'aside': return 300;
-                case 'main': return 400;
-                case 'form': return 150;
-                case 'textarea': return 100;
-                case 'select': return 35;
-                case 'video': return 225;
-                case 'audio': return 50;
-                case 'iframe': return 300;
-                case 'canvas': return 200;
-                case 'table': return 100;
-                default: return 50;
-            }
-        }
-
-        function getDefaultContent(type) {
-            switch(type) {
-                case 'text': return 'Texto editável';
-                case 'button': return 'Botão';
-                case 'image': return 'https://via.placeholder.com/200x150';
-                case 'div': return 'Container';
-                case 'input': return 'Digite aqui...';
-                case 'link': return 'Link';
-                case 'header': return '<h1>Cabeçalho</h1>';
-                case 'footer': return '<p>Rodapé</p>';
-                case 'section': return '<h2>Seção</h2><p>Conteúdo da seção</p>';
-                case 'nav': return '<a href="#">Início</a> | <a href="#">Sobre</a> | <a href="#">Contato</a>';
-                case 'aside': return '<h3>Barra lateral</h3><p>Conteúdo lateral</p>';
-                case 'main': return '<h1>Conteúdo Principal</h1><p>Conteúdo principal da página</p>';
-                case 'form': return '<form><input type="text" placeholder="Nome"><input type="email" placeholder="Email"><button type="submit">Enviar</button></form>';
-                case 'textarea': return 'Digite seu texto aqui...';
-                case 'select': return '<select><option>Opção 1</option><option>Opção 2</option><option>Opção 3</option></select>';
-                case 'checkbox': return '<input type="checkbox" id="check1"><label for="check1">Opção</label>';
-                case 'radio': return '<input type="radio" name="radio1" id="radio1"><label for="radio1">Opção 1</label>';
-                case 'label': return 'Label do campo';
-                case 'video': return '<video controls><source src="video.mp4" type="video/mp4">Seu navegador não suporta vídeo.</video>';
-                case 'audio': return '<audio controls><source src="audio.mp3" type="audio/mpeg">Seu navegador não suporta áudio.</audio>';
-                case 'iframe': return '<iframe src="https://www.google.com" width="300" height="200"></iframe>';
-                case 'canvas': return '<canvas width="200" height="150" style="border:1px solid #000;"></canvas>';
-                case 'svg': return '<svg width="100" height="100"><circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red"/></svg>';
-                case 'code': return '<code>console.log("Hello World!");</code>';
-                case 'pre': return '<pre>function hello() {\n    console.log("Hello World!");\n}</pre>';
-                case 'table': return '<table border="1"><tr><th>Cabeçalho 1</th><th>Cabeçalho 2</th></tr><tr><td>Dado 1</td><td>Dado 2</td></tr></table>';
-                default: return '';
-            }
-        }
-
-        function getDefaultStyles(type) {
-            switch(type) {
-                case 'text': return 'font-family: Arial; font-size: 16px; color: #333;';
-                case 'button': return 'background: #667eea; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;';
-                case 'image': return 'max-width: 100%; height: auto;';
-                case 'div': return 'background: #f0f0f0; border: 1px solid #ccc; padding: 20px;';
-                case 'input': return 'border: 1px solid #ccc; padding: 8px; border-radius: 4px; font-size: 14px;';
-                case 'link': return 'color: #667eea; text-decoration: none;';
-                case 'header': return 'background: #333; color: white; padding: 20px; text-align: center;';
-                case 'footer': return 'background: #f8f9fa; border-top: 1px solid #dee2e6; padding: 20px; text-align: center;';
-                case 'section': return 'background: white; border: 1px solid #dee2e6; padding: 30px; margin: 20px 0;';
-                case 'nav': return 'background: #f8f9fa; padding: 15px; border-bottom: 1px solid #dee2e6;';
-                case 'aside': return 'background: #f8f9fa; border-left: 3px solid #667eea; padding: 20px;';
-                case 'main': return 'background: white; padding: 30px; min-height: 400px;';
-                case 'form': return 'background: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid #dee2e6;';
-                case 'textarea': return 'border: 1px solid #ccc; padding: 8px; border-radius: 4px; font-size: 14px; width: 100%; min-height: 100px; resize: vertical;';
-                case 'select': return 'border: 1px solid #ccc; padding: 8px; border-radius: 4px; font-size: 14px; background: white;';
-                case 'checkbox': return 'margin: 5px;';
-                case 'radio': return 'margin: 5px;';
-                case 'label': return 'font-weight: bold; color: #333; margin-bottom: 5px; display: block;';
-                case 'video': return 'max-width: 100%; height: auto; border-radius: 8px;';
-                case 'audio': return 'width: 100%;';
-                case 'iframe': return 'border: 1px solid #ccc; border-radius: 4px;';
-                case 'canvas': return 'border: 1px solid #ccc; border-radius: 4px;';
-                case 'svg': return 'max-width: 100%; height: auto;';
-                case 'code': return 'background: #f8f9fa; padding: 5px; border-radius: 3px; font-family: monospace; color: #e83e8c;';
-                case 'pre': return 'background: #f8f9fa; padding: 15px; border-radius: 5px; font-family: monospace; overflow-x: auto; border: 1px solid #dee2e6;';
-                case 'table': return 'border-collapse: collapse; width: 100%;';
-                default: return '';
-            }
-        }
-
-        function addElementToCanvas(elementData) {
-            const canvas = document.getElementById('canvas');
-            const element = document.createElement('div');
-            
-            element.className = 'element';
-            element.id = elementData.id;
-            element.dataset.type = elementData.type;
-            element.dataset.content = elementData.content;
-            element.dataset.styles = elementData.styles;
-            
-            element.style.left = elementData.x + 'px';
-            element.style.top = elementData.y + 'px';
-            element.style.width = elementData.width + 'px';
-            element.style.height = elementData.height + 'px';
-            
-            element.innerHTML = `
-                ${createElement(elementData.type, elementData.content, elementData.styles)}
-                <div class="element-controls">
-                    <button class="control-btn" onclick="editElement('${elementData.id}')">✏️</button>
-                    <button class="control-btn" onclick="deleteElement('${elementData.id}')">🗑️</button>
-                </div>
-            `;
-            
-            element.onclick = (e) => {
-                e.stopPropagation();
-                selectElement(element, e);
-            };
-            
-            element.onmousemove = (e) => {
-                if (element.classList.contains('selected')) {
-                    showPositionIndicator(element, e);
-                }
-            };
-            
-            makeDraggable(element);
-            addResizeHandles(element);
-            canvas.appendChild(element);
-        }
-
-        function createElement(type, content, styles) {
-            switch(type) {
-                case 'text':
-                    return `<p style="${styles}">${content}</p>`;
-                case 'button':
-                    return `<button style="${styles}">${content}</button>`;
-                case 'image':
-                    return `<img src="${content}" style="${styles}" alt="Imagem">`;
-                case 'div':
-                    return `<div style="${styles}">${content}</div>`;
-                case 'input':
-                    return `<input type="text" placeholder="${content}" style="${styles}">`;
-                case 'link':
-                    return `<a href="#" style="${styles}">${content}</a>`;
-                case 'header':
-                    return `<header style="${styles}">${content}</header>`;
-                case 'footer':
-                    return `<footer style="${styles}">${content}</footer>`;
-                case 'section':
-                    return `<section style="${styles}">${content}</section>`;
-                case 'nav':
-                    return `<nav style="${styles}">${content}</nav>`;
-                case 'aside':
-                    return `<aside style="${styles}">${content}</aside>`;
-                case 'main':
-                    return `<main style="${styles}">${content}</main>`;
-                case 'form':
-                    return `<form style="${styles}">${content}</form>`;
-                case 'textarea':
-                    return `<textarea placeholder="${content}" style="${styles}"></textarea>`;
-                case 'select':
-                    return `<select style="${styles}">${content}</select>`;
-                case 'checkbox':
-                    return `<div style="${styles}">${content}</div>`;
-                case 'radio':
-                    return `<div style="${styles}">${content}</div>`;
-                case 'label':
-                    return `<label style="${styles}">${content}</label>`;
-                case 'video':
-                    return `<video controls style="${styles}">${content}</video>`;
-                case 'audio':
-                    return `<audio controls style="${styles}">${content}</audio>`;
-                case 'iframe':
-                    return `<iframe style="${styles}">${content}</iframe>`;
-                case 'canvas':
-                    return `<canvas style="${styles}">${content}</canvas>`;
-                case 'svg':
-                    return `<svg style="${styles}">${content}</svg>`;
-                case 'code':
-                    return `<code style="${styles}">${content}</code>`;
-                case 'pre':
-                    return `<pre style="${styles}">${content}</pre>`;
-                case 'table':
-                    return `<table style="${styles}">${content}</table>`;
-                default:
-                    return `<div style="${styles}">${content}</div>`;
-            }
-        }
-
-        function makeDraggable(element) {
-            let isDragging = false;
-            let startX, startY, startLeft, startTop;
-            
-            element.onmousedown = (e) => {
-                if (e.target.classList.contains('control-btn') || e.target.classList.contains('resize-handle')) return;
-                isDragging = true;
-                startX = e.clientX;
-                startY = e.clientY;
-                startLeft = parseInt(element.style.left) || 0;
-                startTop = parseInt(element.style.top) || 0;
-                selectElement(element);
-                e.preventDefault();
-            };
-            
-            document.onmousemove = (e) => {
-                if (!isDragging) return;
-                let newLeft = startLeft + (e.clientX - startX);
-                let newTop = startTop + (e.clientY - startY);
-                
-                // Snap to grid se habilitado
-                if (snapToGridEnabled) {
-                    const gridSize = 20;
-                    newLeft = Math.round(newLeft / gridSize) * gridSize;
-                    newTop = Math.round(newTop / gridSize) * gridSize;
-                }
-                
-                element.style.left = Math.max(0, newLeft) + 'px';
-                element.style.top = Math.max(0, newTop) + 'px';
-            };
-            
-            document.onmouseup = () => {
-                if (isDragging) {
-                    isDragging = false;
-                    saveToHistory();
-                    autoSave();
-                }
-            };
-        }
-
-        function selectElement(element, event) {
-            if (event && event.ctrlKey) {
-                // Seleção múltipla com Ctrl
-                if (element.classList.contains('selected')) {
-                    element.classList.remove('selected');
-                    selectedElements = selectedElements.filter(el => el !== element);
-                    if (selectedElement === element) {
-                        selectedElement = selectedElements.length > 0 ? selectedElements[selectedElements.length - 1] : null;
-                    }
-                } else {
-                    element.classList.add('selected');
-                    selectedElements.push(element);
-                    selectedElement = element;
-                }
-            } else {
-                // Seleção única
-                document.querySelectorAll('.element').forEach(el => el.classList.remove('selected'));
-                element.classList.add('selected');
-                selectedElement = element;
-                selectedElements = [element];
-            }
-        }
-
-        function editElement(elementId) {
-            const element = document.getElementById(elementId);
-            if (!element) return;
-            
-            selectedElement = element;
-            const type = element.dataset.type;
-            const content = element.dataset.content;
-            const styles = element.dataset.styles;
-            
-            document.getElementById('modalTitle').textContent = `Editar ${type.charAt(0).toUpperCase() + type.slice(1)}`;
-            
-            let formHTML = '';
-            if (type === 'text' || type === 'button' || type === 'link') {
-                formHTML = `
-                    <div class="form-group">
-                        <label class="form-label">Conteúdo:</label>
-                        <input type="text" class="form-input" id="elementContent" value="${content}">
-                    </div>
-                `;
-            } else if (type === 'image') {
-                formHTML = `
-                    <div class="form-group">
-                        <label class="form-label">URL da Imagem:</label>
-                        <input type="text" class="form-input" id="elementContent" value="${content}">
-                    </div>
-                `;
-            } else if (type === 'input') {
-                formHTML = `
-                    <div class="form-group">
-                        <label class="form-label">Placeholder:</label>
-                        <input type="text" class="form-input" id="elementContent" value="${content}">
-                    </div>
-                `;
-            } else if (type === 'div') {
-                formHTML = `
-                    <div class="form-group">
-                        <label class="form-label">Conteúdo HTML:</label>
-                        <textarea class="form-textarea" id="elementContent">${content}</textarea>
-                    </div>
-                `;
-            }
-            
-            formHTML += `
-                <div class="form-group">
-                    <label class="form-label">Estilos CSS:</label>
-                    <textarea class="form-textarea" id="elementStyles">${styles}</textarea>
-                </div>
-            `;
-            
-            document.getElementById('modalForm').innerHTML = formHTML;
-            document.getElementById('elementModal').style.display = 'flex';
-        }
-
-        function saveElement() {
-            if (!selectedElement) return;
-            
-            const content = document.getElementById('elementContent').value;
-            const styles = document.getElementById('elementStyles').value;
-            
-            selectedElement.dataset.content = content;
-            selectedElement.dataset.styles = styles;
-            
-            const type = selectedElement.dataset.type;
-            const elementHTML = createElement(type, content, styles);
-            
-            const controlsHTML = selectedElement.querySelector('.element-controls').outerHTML;
-            selectedElement.innerHTML = elementHTML + controlsHTML;
-            
-            closeModal();
-            updateCodePanel();
-            saveToHistory();
-            autoSave();
-        }
-
-        function deleteElement(elementId) {
-            if (confirm('Tem certeza que deseja excluir este elemento?')) {
-                const element = document.getElementById(elementId);
-                if (element) {
-                    element.remove();
-                    updateCodePanel();
-                    saveToHistory();
-                    autoSave();
-                }
-            }
-        }
-
-        function closeModal() {
-            document.getElementById('elementModal').style.display = 'none';
-        }
-
-        function generateHTML() {
-            const elements = Array.from(document.querySelectorAll('.element'));
-            
-            let bodyHTML = '';
-            elements.forEach(element => {
-                const type = element.dataset.type;
-                const content = element.dataset.content;
-                const styles = element.dataset.styles;
-                const x = parseInt(element.style.left) || 0;
-                const y = parseInt(element.style.top) || 0;
-                
-                const positionStyles = `position: absolute; left: ${x}px; top: ${y}px; ${styles}`;
-                bodyHTML += createElement(type, content, positionStyles) + '\n    ';
-            });
-            
-            return `<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${currentProject ? currentProject.name : 'Projeto Sitefy'}</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            position: relative;
-            min-height: 100vh;
-            max-width: 375px;
-            margin: 0 auto;
-            background: #f8f9fa;
-            overflow-x: hidden;
-        }
-        * {
-            box-sizing: border-box;
-        }
-        img, video, iframe {
-            max-width: 100%;
-            height: auto;
-        }
-    </style>
-</head>
-<body>
-    ${bodyHTML}
-</body>
-</html>`;
-        }
-
-        function updateCodePanel() {
-            showCode(currentCodeTab);
-        }
-
-        function showCode(type) {
-            currentCodeTab = type;
-            document.querySelectorAll('.code-tab').forEach(tab => tab.classList.remove('active'));
-            document.querySelector(`.code-tab[onclick="showCode('${type}')"]`).classList.add('active');
-            
-            const codeContent = document.getElementById('codeContent');
-            
-            switch(type) {
-                case 'html':
-                    codeContent.textContent = generateHTML();
-                    break;
-                case 'css':
-                    codeContent.textContent = generateCSS();
-                    break;
-                case 'js':
-                    codeContent.textContent = generateJS();
-                    break;
-            }
-        }
-
-        function generateCSS() {
-            return `/* CSS personalizado para mobile */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    position: relative;
-    min-height: 100vh;
-    max-width: 375px;
-    margin: 0 auto;
-    background: #f8f9fa;
-    overflow-x: hidden;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-img, video, iframe {
-    max-width: 100%;
-    height: auto;
-}
-
-/* Estilos responsivos para elementos */
-@media (max-width: 375px) {
-    body {
-        padding: 10px;
-    }
-}
-
-/* Adicione seus estilos personalizados aqui */`;
-        }
-
-        function generateJS() {
-            return `// JavaScript personalizado
-console.log("Site criado com Sitefy!");
-
-// Adicione seu código JavaScript aqui`;
         }
 
         function showPreview() {
@@ -2134,6 +2365,7 @@ console.log("Site criado com Sitefy!");
             a.click();
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
+            showNotification('HTML baixado com sucesso!');
         }
 
         function goHome() {
@@ -2142,6 +2374,7 @@ console.log("Site criado com Sitefy!");
             }
         }
 
+        // History Management
         function saveToHistory() {
             const state = {
                 elements: Array.from(document.querySelectorAll('.element')).map(el => ({
@@ -2171,6 +2404,7 @@ console.log("Site criado com Sitefy!");
                 historyIndex--;
                 restoreState(history[historyIndex]);
                 updateCodePanel();
+                showNotification('Desfeito');
             }
         }
 
@@ -2179,12 +2413,13 @@ console.log("Site criado com Sitefy!");
                 historyIndex++;
                 restoreState(history[historyIndex]);
                 updateCodePanel();
+                showNotification('Refeito');
             }
         }
 
         function restoreState(state) {
             const canvas = document.getElementById('canvas');
-            canvas.innerHTML = '';
+            canvas.innerHTML = '<div class="canvas-frame">Mobile 375x667</div>';
             elementCounter = 0;
             
             state.elements.forEach(element => {
@@ -2195,56 +2430,18 @@ console.log("Site criado com Sitefy!");
             });
         }
 
-        function alignLeft() {
-            if (selectedElement) {
-                selectedElement.style.left = '10px';
-                saveToHistory();
-                autoSave();
-            }
-        }
-
-        function alignCenter() {
-            if (selectedElement) {
-                const canvas = document.getElementById('canvas');
-                const canvasWidth = canvas.offsetWidth;
-                const elementWidth = parseInt(selectedElement.style.width) || selectedElement.offsetWidth;
-                const newLeft = Math.max(0, (canvasWidth - elementWidth) / 2);
-                selectedElement.style.left = newLeft + 'px';
-                saveToHistory();
-                autoSave();
-            }
-        }
-
-        function alignRight() {
-            if (selectedElement) {
-                const canvas = document.getElementById('canvas');
-                const canvasWidth = canvas.offsetWidth;
-                const elementWidth = parseInt(selectedElement.style.width) || selectedElement.offsetWidth;
-                const newLeft = Math.max(0, canvasWidth - elementWidth - 10);
-                selectedElement.style.left = newLeft + 'px';
-                saveToHistory();
-                autoSave();
-            }
-        }
-
-        function allowDrop(e) {
-            e.preventDefault();
-        }
-
-        function dropElement(e) {
-            e.preventDefault();
-        }
-
+        // Auto-save functionality
         let autoSaveTimeout;
         function autoSave() {
             clearTimeout(autoSaveTimeout);
             autoSaveTimeout = setTimeout(() => {
                 saveProject();
-            }, 2000);
+            }, 3000);
         }
 
+        // Event Listeners
         document.getElementById('canvas').onclick = (e) => {
-            if (e.target.id === 'canvas') {
+            if (e.target.id === 'canvas' || e.target.classList.contains('canvas-frame')) {
                 if (selectedElement) {
                     selectedElement.classList.remove('selected');
                     selectedElement = null;
@@ -2253,6 +2450,7 @@ console.log("Site criado com Sitefy!");
             }
         };
 
+        // Prevent accidental page leave
         window.addEventListener('beforeunload', (e) => {
             if (currentProject) {
                 e.preventDefault();
@@ -2260,6 +2458,7 @@ console.log("Site criado com Sitefy!");
             }
         });
 
+        // Enhanced Keyboard Shortcuts
         document.addEventListener('keydown', (e) => {
             if (e.ctrlKey || e.metaKey) {
                 switch(e.key) {
@@ -2275,76 +2474,68 @@ console.log("Site criado com Sitefy!");
                             undo();
                         }
                         break;
+                    case 'y':
+                        e.preventDefault();
+                        redo();
+                        break;
                     case 'd':
                         e.preventDefault();
                         duplicateElement();
                         break;
-                    case 'g':
+                    case 'a':
                         e.preventDefault();
-                        groupElements();
-                        break;
-                    case 'u':
-                        e.preventDefault();
-                        ungroupElements();
-                        break;
-                    case 'Delete':
-                    case 'Backspace':
-                        if (selectedElement) {
-                            e.preventDefault();
-                            deleteElement(selectedElement.id);
-                        }
+                        // Select all elements
+                        document.querySelectorAll('.element').forEach(el => el.classList.add('selected'));
                         break;
                 }
             }
             
-            // Atalhos sem Ctrl
-            switch(e.key) {
-                case 'Escape':
-                    if (selectedElement) {
+            // Element manipulation keys
+            if (selectedElement) {
+                switch(e.key) {
+                    case 'Delete':
+                    case 'Backspace':
+                        e.preventDefault();
+                        deleteElement(selectedElement.id);
+                        break;
+                    case 'Escape':
                         selectedElement.classList.remove('selected');
                         selectedElement = null;
                         selectedElements = [];
-                    }
-                    break;
-                case 'ArrowUp':
-                    if (selectedElement) {
+                        break;
+                    case 'ArrowUp':
                         e.preventDefault();
                         const currentTop = parseInt(selectedElement.style.top) || 0;
-                        selectedElement.style.top = (currentTop - 10) + 'px';
+                        selectedElement.style.top = Math.max(0, currentTop - (e.shiftKey ? 1 : 10)) + 'px';
                         saveToHistory();
                         autoSave();
-                    }
-                    break;
-                case 'ArrowDown':
-                    if (selectedElement) {
+                        break;
+                    case 'ArrowDown':
                         e.preventDefault();
-                        const currentTop = parseInt(selectedElement.style.top) || 0;
-                        selectedElement.style.top = (currentTop + 10) + 'px';
+                        const newTop = parseInt(selectedElement.style.top) || 0;
+                        selectedElement.style.top = (newTop + (e.shiftKey ? 1 : 10)) + 'px';
                         saveToHistory();
                         autoSave();
-                    }
-                    break;
-                case 'ArrowLeft':
-                    if (selectedElement) {
+                        break;
+                    case 'ArrowLeft':
                         e.preventDefault();
                         const currentLeft = parseInt(selectedElement.style.left) || 0;
-                        selectedElement.style.left = (currentLeft - 10) + 'px';
+                        selectedElement.style.left = Math.max(0, currentLeft - (e.shiftKey ? 1 : 10)) + 'px';
                         saveToHistory();
                         autoSave();
-                    }
-                    break;
-                case 'ArrowRight':
-                    if (selectedElement) {
+                        break;
+                    case 'ArrowRight':
                         e.preventDefault();
-                        const currentLeft = parseInt(selectedElement.style.left) || 0;
-                        selectedElement.style.left = (currentLeft + 10) + 'px';
+                        const newLeft = parseInt(selectedElement.style.left) || 0;
+                        selectedElement.style.left = (newLeft + (e.shiftKey ? 1 : 10)) + 'px';
                         saveToHistory();
                         autoSave();
-                    }
-                    break;
+                        break;
+                }
             }
         });
 
+        // Touch Events for Mobile
         let touchStartX, touchStartY;
         document.addEventListener('touchstart', (e) => {
             touchStartX = e.touches[0].clientX;
@@ -2365,7 +2556,26 @@ console.log("Site criado com Sitefy!");
             }
         });
 
-        console.log('Editor Sitefy carregado');
+        // Initialize position modal event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            const posX = document.getElementById('posX');
+            const posY = document.getElementById('posY');
+            
+            if (posX) posX.addEventListener('input', updatePositionPreview);
+            if (posY) posY.addEventListener('input', updatePositionPreview);
+        });
+
+        // Drag and Drop Support
+        function allowDrop(e) {
+            e.preventDefault();
+        }
+
+        function dropElement(e) {
+            e.preventDefault();
+        }
+
+        console.log('🎨 Sitefy Dark Editor carregado com sucesso!');
+        showNotification('Editor carregado', 'success');
     </script>
 </body>
 </html>
