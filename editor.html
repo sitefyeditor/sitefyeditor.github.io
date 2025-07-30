@@ -257,6 +257,77 @@
             background: #5a6fd8;
         }
 
+        .canvas.grid-enabled {
+            background-image: 
+                linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .canvas.rulers-enabled {
+            background-image: 
+                linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px);
+            background-size: 10px 10px;
+        }
+
+        .canvas-container {
+            position: relative;
+            overflow: auto;
+        }
+
+        .canvas-container.zoomed {
+            transform-origin: top left;
+        }
+
+        .element-group {
+            border: 2px dashed #667eea;
+            position: absolute;
+            cursor: move;
+        }
+
+        .element-group.selected {
+            border-color: #28a745;
+            border-style: solid;
+        }
+
+        .position-indicator {
+            position: absolute;
+            background: rgba(102, 126, 234, 0.8);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 11px;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .resize-handle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #667eea;
+            border: 1px solid white;
+            cursor: pointer;
+        }
+
+        .resize-handle.nw { top: -4px; left: -4px; cursor: nw-resize; }
+        .resize-handle.ne { top: -4px; right: -4px; cursor: ne-resize; }
+        .resize-handle.sw { bottom: -4px; left: -4px; cursor: sw-resize; }
+        .resize-handle.se { bottom: -4px; right: -4px; cursor: se-resize; }
+        .resize-handle.n { top: -4px; left: 50%; transform: translateX(-50%); cursor: n-resize; }
+        .resize-handle.s { bottom: -4px; left: 50%; transform: translateX(-50%); cursor: s-resize; }
+        .resize-handle.w { left: -4px; top: 50%; transform: translateY(-50%); cursor: w-resize; }
+        .resize-handle.e { right: -4px; top: 50%; transform: translateY(-50%); cursor: e-resize; }
+
+        .element.selected .resize-handle {
+            display: block;
+        }
+
+        .element .resize-handle {
+            display: none;
+        }
+
         .code-panel {
             height: 250px;
             background: #2d3748;
@@ -607,7 +678,7 @@
     <div class="main-container">
         <div class="sidebar">
             <div class="sidebar-section">
-                <div class="sidebar-title">Elementos</div>
+                <div class="sidebar-title">Elementos Básicos</div>
                 <div class="tool-grid">
                     <div class="tool-btn" onclick="addElement('text')">
                         <svg fill="currentColor" viewBox="0 0 24 24">
@@ -647,22 +718,172 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="sidebar-section">
+                <div class="sidebar-title">Estrutura</div>
+                <div class="tool-grid">
+                    <div class="tool-btn" onclick="addElement('header')">
+                        <svg fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/>
+                        </svg>
+                        Header
+                    </div>
+                    <div class="tool-btn" onclick="addElement('footer')">
+                        <svg fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/>
+                        </svg>
+                        Footer
+                    </div>
+                    <div class="tool-btn" onclick="addElement('section')">
+                        <svg fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                        </svg>
+                        Section
+                    </div>
+                    <div class="tool-btn" onclick="addElement('nav')">
+                        <svg fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                        </svg>
+                        Nav
+                    </div>
+                    <div class="tool-btn" onclick="addElement('aside')">
+                        <svg fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                        </svg>
+                        Aside
+                    </div>
+                    <div class="tool-btn" onclick="addElement('main')">
+                        <svg fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                        </svg>
+                        Main
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sidebar-section">
+                <div class="sidebar-title">Formulários</div>
+                <div class="tool-grid">
+                    <div class="tool-btn" onclick="addElement('form')">
+                        <svg fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+                        </svg>
+                        Form
+                    </div>
+                    <div class="tool-btn" onclick="addElement('textarea')">
+                        <svg fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+                        </svg>
+                        Textarea
+                    </div>
+                    <div class="tool-btn" onclick="addElement('select')">
+                        <svg fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M7 10l5 5 5-5z"/>
+                        </svg>
+                        Select
+                    </div>
+                    <div class="tool-btn" onclick="addElement('checkbox')">
+                        <svg fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                        Checkbox
+                    </div>
+                    <div class="tool-btn" onclick="addElement('radio')">
+                        <svg fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                        Radio
+                    </div>
+                    <div class="tool-btn" onclick="addElement('label')">
+                        <svg fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
+                        </svg>
+                        Label
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sidebar-section">
+                <div class="sidebar-title">Mídia</div>
+                <div class="tool-grid">
+                    <div class="tool-btn" onclick="addElement('video')">
+                        <svg fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/>
+                        </svg>
+                        Video
+                    </div>
+                    <div class="tool-btn" onclick="addElement('audio')">
+                        <svg fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+                        </svg>
+                        Audio
+                    </div>
+                    <div class="tool-btn" onclick="addElement('iframe')">
+                        <svg fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                        </svg>
+                        Iframe
+                    </div>
+                    <div class="tool-btn" onclick="addElement('canvas')">
+                        <svg fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                        </svg>
+                        Canvas
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sidebar-section">
+                <div class="sidebar-title">Avançado</div>
+                <div class="tool-grid">
+                    <div class="tool-btn" onclick="addElement('svg')">
+                        <svg fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                        </svg>
+                        SVG
+                    </div>
+                    <div class="tool-btn" onclick="addElement('code')">
+                        <svg fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
+                        </svg>
+                        Code
+                    </div>
+                    <div class="tool-btn" onclick="addElement('pre')">
+                        <svg fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
+                        </svg>
+                        Pre
+                    </div>
+                    <div class="tool-btn" onclick="addElement('table')">
+                        <svg fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/>
+                        </svg>
+                        Table
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="editor-area">
             <div class="editor-toolbar">
                 <div class="toolbar-group">
-                    <button class="icon-btn" onclick="undo()" title="Desfazer">
+                    <button class="icon-btn" onclick="undo()" title="Desfazer (Ctrl+Z)">
                         <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12.5 8c-2.65 0-5.05.99-6.9 2.6L2 7v9h9l-3.62-3.62c1.39-1.16 3.16-1.88 5.12-1.88 3.54 0 6.55 2.31 7.6 5.5l2.37-.78C21.08 11.03 17.15 8 12.5 8z"/>
                         </svg>
                     </button>
-                    <button class="icon-btn" onclick="redo()" title="Refazer">
+                    <button class="icon-btn" onclick="redo()" title="Refazer (Ctrl+Y)">
                         <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M18.4 10.6C16.55 8.99 14.15 8 11.5 8c-4.65 0-8.58 3.03-9.96 7.22L3.9 16c1.05-3.19 4.05-5.5 7.6-5.5 1.95 0 3.73.72 5.12 1.88L13 16h9V7l-3.6 3.6z"/>
                         </svg>
                     </button>
+                    <button class="icon-btn" onclick="duplicateElement()" title="Duplicar (Ctrl+D)">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                        </svg>
+                    </button>
                 </div>
+                
                 <div class="toolbar-group">
                     <button class="icon-btn" onclick="alignLeft()" title="Alinhar à esquerda">
                         <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
@@ -677,6 +898,80 @@
                     <button class="icon-btn" onclick="alignRight()" title="Alinhar à direita">
                         <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M3 21h18v-2H3v2zm6-4h12v-2H9v2zm-6-4h18v-2H3v2zm6-4h12V7H9v2zM3 3v2h18V3H3z"/>
+                        </svg>
+                    </button>
+                    <button class="icon-btn" onclick="alignTop()" title="Alinhar ao topo">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8 11h3v10h2V11h3l-4-4-4 4zM4 3v2h16V3H4z"/>
+                        </svg>
+                    </button>
+                    <button class="icon-btn" onclick="alignMiddle()" title="Alinhar ao centro vertical">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8 19h3v4h2v-4h3l-4-4-4 4zM4 3v2h16V3H4z"/>
+                        </svg>
+                    </button>
+                    <button class="icon-btn" onclick="alignBottom()" title="Alinhar à base">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M16 13h-3V3h-2v10H8l4 4 4-4zM4 19v2h16v-2H4z"/>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="toolbar-group">
+                    <button class="icon-btn" onclick="bringToFront()" title="Trazer para frente">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8 11h3v10h2V11h3l-4-4-4 4zM4 3v2h16V3H4z"/>
+                        </svg>
+                    </button>
+                    <button class="icon-btn" onclick="sendToBack()" title="Enviar para trás">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M16 13h-3V3h-2v10H8l4 4 4-4zM4 19v2h16v-2H4z"/>
+                        </svg>
+                    </button>
+                    <button class="icon-btn" onclick="groupElements()" title="Agrupar elementos">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M16 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zm4 18v-6h2.5l-2.54-7.63A1.5 1.5 0 0 0 18.54 8H5.46c-.84 0-1.61.58-1.96 1.37L1 16v6h2v-5h2.5l2.54-7.63c.35-.79 1.12-1.37 1.96-1.37h13.08c.84 0 1.61.58 1.96 1.37L19.5 16H22v5h2z"/>
+                        </svg>
+                    </button>
+                    <button class="icon-btn" onclick="ungroupElements()" title="Desagrupar elementos">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M16 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zm4 18v-6h2.5l-2.54-7.63A1.5 1.5 0 0 0 18.54 8H5.46c-.84 0-1.61.58-1.96 1.37L1 16v6h2v-5h2.5l2.54-7.63c.35-.79 1.12-1.37 1.96-1.37h13.08c.84 0 1.61.58 1.96 1.37L19.5 16H22v5h2z"/>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="toolbar-group">
+                    <button class="icon-btn" onclick="showGrid()" title="Mostrar/Ocultar grade">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M3 3v8h8V3H3zm6 6H5V5h4v4zm-6 4v8h8v-8H3zm6 6H5v-4h4v4zm4-16v8h8V3h-8zm6 6h-4V5h4v4zm-6 4v8h8v-8h-8zm6 6h-4v-4h4v4z"/>
+                        </svg>
+                    </button>
+                    <button class="icon-btn" onclick="snapToGrid()" title="Aderir à grade">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M3 3v8h8V3H3zm6 6H5V5h4v4zm-6 4v8h8v-8H3zm6 6H5v-4h4v4zm4-16v8h8V3h-8zm6 6h-4V5h4v4zm-6 4v8h8v-8h-8zm6 6h-4v-4h4v4z"/>
+                        </svg>
+                    </button>
+                    <button class="icon-btn" onclick="showRulers()" title="Mostrar/Ocultar réguas">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M1 3v18h22V3H1zm20 16H3V5h18v14zM9 7H7v2h2V7zm4 0h-2v2h2V7zm4 0h-2v2h2V7zM9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2z"/>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="toolbar-group">
+                    <button class="icon-btn" onclick="zoomIn()" title="Aumentar zoom">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                        </svg>
+                    </button>
+                    <button class="icon-btn" onclick="zoomOut()" title="Diminuir zoom">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 13H5v-2h14v2z"/>
+                        </svg>
+                    </button>
+                    <button class="icon-btn" onclick="resetZoom()" title="Zoom 100%">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
                         </svg>
                     </button>
                 </div>
@@ -912,6 +1207,284 @@
                 .trim();
         }
 
+        // Variáveis globais para novas funcionalidades
+        let gridEnabled = false;
+        let rulersEnabled = false;
+        let snapToGridEnabled = false;
+        let currentZoom = 1;
+        let selectedElements = [];
+        let elementGroups = [];
+
+        // Funções de zoom
+        function zoomIn() {
+            if (currentZoom < 3) {
+                currentZoom += 0.25;
+                applyZoom();
+            }
+        }
+
+        function zoomOut() {
+            if (currentZoom > 0.25) {
+                currentZoom -= 0.25;
+                applyZoom();
+            }
+        }
+
+        function resetZoom() {
+            currentZoom = 1;
+            applyZoom();
+        }
+
+        function applyZoom() {
+            const container = document.querySelector('.canvas-container');
+            container.style.transform = `scale(${currentZoom})`;
+            container.classList.toggle('zoomed', currentZoom !== 1);
+        }
+
+        // Funções de grade e réguas
+        function showGrid() {
+            gridEnabled = !gridEnabled;
+            const canvas = document.getElementById('canvas');
+            canvas.classList.toggle('grid-enabled', gridEnabled);
+        }
+
+        function showRulers() {
+            rulersEnabled = !rulersEnabled;
+            const canvas = document.getElementById('canvas');
+            canvas.classList.toggle('rulers-enabled', rulersEnabled);
+        }
+
+        function snapToGrid() {
+            snapToGridEnabled = !snapToGridEnabled;
+            if (selectedElement && snapToGridEnabled) {
+                snapElementToGrid(selectedElement);
+            }
+        }
+
+        function snapElementToGrid(element) {
+            const gridSize = 20;
+            const x = Math.round(parseInt(element.style.left) / gridSize) * gridSize;
+            const y = Math.round(parseInt(element.style.top) / gridSize) * gridSize;
+            element.style.left = x + 'px';
+            element.style.top = y + 'px';
+        }
+
+        // Funções de alinhamento vertical
+        function alignTop() {
+            if (selectedElement) {
+                selectedElement.style.top = '10px';
+                saveToHistory();
+                autoSave();
+            }
+        }
+
+        function alignMiddle() {
+            if (selectedElement) {
+                const canvas = document.getElementById('canvas');
+                const canvasHeight = canvas.offsetHeight;
+                const elementHeight = parseInt(selectedElement.style.height) || selectedElement.offsetHeight;
+                const newTop = Math.max(0, (canvasHeight - elementHeight) / 2);
+                selectedElement.style.top = newTop + 'px';
+                saveToHistory();
+                autoSave();
+            }
+        }
+
+        function alignBottom() {
+            if (selectedElement) {
+                const canvas = document.getElementById('canvas');
+                const canvasHeight = canvas.offsetHeight;
+                const elementHeight = parseInt(selectedElement.style.height) || selectedElement.offsetHeight;
+                const newTop = Math.max(0, canvasHeight - elementHeight - 10);
+                selectedElement.style.top = newTop + 'px';
+                saveToHistory();
+                autoSave();
+            }
+        }
+
+        // Funções de camadas
+        function bringToFront() {
+            if (selectedElement) {
+                const canvas = document.getElementById('canvas');
+                canvas.appendChild(selectedElement);
+                saveToHistory();
+                autoSave();
+            }
+        }
+
+        function sendToBack() {
+            if (selectedElement) {
+                const canvas = document.getElementById('canvas');
+                canvas.insertBefore(selectedElement, canvas.firstChild);
+                saveToHistory();
+                autoSave();
+            }
+        }
+
+        // Funções de duplicação
+        function duplicateElement() {
+            if (selectedElement) {
+                const newElement = selectedElement.cloneNode(true);
+                const newId = 'element_' + (++elementCounter);
+                newElement.id = newId;
+                newElement.classList.remove('selected');
+                
+                // Ajustar posição
+                const currentLeft = parseInt(selectedElement.style.left) || 0;
+                const currentTop = parseInt(selectedElement.style.top) || 0;
+                newElement.style.left = (currentLeft + 20) + 'px';
+                newElement.style.top = (currentTop + 20) + 'px';
+                
+                // Atualizar controles
+                const controls = newElement.querySelector('.element-controls');
+                if (controls) {
+                    controls.innerHTML = `
+                        <button class="control-btn" onclick="editElement('${newId}')">✏️</button>
+                        <button class="control-btn" onclick="deleteElement('${newId}')">🗑️</button>
+                    `;
+                }
+                
+                // Adicionar funcionalidades
+                newElement.onclick = (e) => {
+                    e.stopPropagation();
+                    selectElement(newElement, e);
+                };
+                makeDraggable(newElement);
+                addResizeHandles(newElement);
+                
+                document.getElementById('canvas').appendChild(newElement);
+                selectElement(newElement, null);
+                updateCodePanel();
+                saveToHistory();
+                autoSave();
+            }
+        }
+
+        // Funções de agrupamento
+        function groupElements() {
+            if (selectedElements.length > 1) {
+                const group = {
+                    id: 'group_' + Date.now(),
+                    elements: [...selectedElements],
+                    x: Math.min(...selectedElements.map(el => parseInt(el.style.left) || 0)),
+                    y: Math.min(...selectedElements.map(el => parseInt(el.style.top) || 0)),
+                    width: Math.max(...selectedElements.map(el => (parseInt(el.style.left) || 0) + (parseInt(el.style.width) || 200))) - Math.min(...selectedElements.map(el => parseInt(el.style.left) || 0)),
+                    height: Math.max(...selectedElements.map(el => (parseInt(el.style.top) || 0) + (parseInt(el.style.height) || 50))) - Math.min(...selectedElements.map(el => parseInt(el.style.top) || 0))
+                };
+                
+                elementGroups.push(group);
+                selectedElements.forEach(el => el.style.display = 'none');
+                createGroupElement(group);
+                selectedElements = [];
+                selectedElement = null;
+            }
+        }
+
+        function ungroupElements() {
+            if (selectedElement && selectedElement.classList.contains('element-group')) {
+                const groupId = selectedElement.dataset.groupId;
+                const group = elementGroups.find(g => g.id === groupId);
+                if (group) {
+                    group.elements.forEach(el => el.style.display = 'block');
+                    selectedElement.remove();
+                    elementGroups = elementGroups.filter(g => g.id !== groupId);
+                }
+            }
+        }
+
+        function createGroupElement(group) {
+            const groupElement = document.createElement('div');
+            groupElement.className = 'element element-group';
+            groupElement.dataset.groupId = group.id;
+            groupElement.style.left = group.x + 'px';
+            groupElement.style.top = group.y + 'px';
+            groupElement.style.width = group.width + 'px';
+            groupElement.style.height = group.height + 'px';
+            
+            groupElement.onclick = (e) => {
+                e.stopPropagation();
+                selectElement(groupElement, e);
+            };
+            
+            makeDraggable(groupElement);
+            document.getElementById('canvas').appendChild(groupElement);
+        }
+
+        // Função para adicionar handles de redimensionamento
+        function addResizeHandles(element) {
+            const handles = ['nw', 'ne', 'sw', 'se', 'n', 's', 'w', 'e'];
+            handles.forEach(pos => {
+                const handle = document.createElement('div');
+                handle.className = `resize-handle ${pos}`;
+                handle.onmousedown = (e) => {
+                    e.stopPropagation();
+                    startResize(element, pos, e);
+                };
+                element.appendChild(handle);
+            });
+        }
+
+        function startResize(element, position, e) {
+            const startX = e.clientX;
+            const startY = e.clientY;
+            const startWidth = parseInt(element.style.width) || 200;
+            const startHeight = parseInt(element.style.height) || 50;
+            const startLeft = parseInt(element.style.left) || 0;
+            const startTop = parseInt(element.style.top) || 0;
+            
+            function onMouseMove(e) {
+                const deltaX = e.clientX - startX;
+                const deltaY = e.clientY - startY;
+                
+                let newWidth = startWidth;
+                let newHeight = startHeight;
+                let newLeft = startLeft;
+                let newTop = startTop;
+                
+                if (position.includes('e')) newWidth = startWidth + deltaX;
+                if (position.includes('w')) {
+                    newWidth = startWidth - deltaX;
+                    newLeft = startLeft + deltaX;
+                }
+                if (position.includes('s')) newHeight = startHeight + deltaY;
+                if (position.includes('n')) {
+                    newHeight = startHeight - deltaY;
+                    newTop = startTop + deltaY;
+                }
+                
+                if (newWidth > 50) {
+                    element.style.width = newWidth + 'px';
+                    element.style.left = newLeft + 'px';
+                }
+                if (newHeight > 30) {
+                    element.style.height = newHeight + 'px';
+                    element.style.top = newTop + 'px';
+                }
+            }
+            
+            function onMouseUp() {
+                document.removeEventListener('mousemove', onMouseMove);
+                document.removeEventListener('mouseup', onMouseUp);
+                saveToHistory();
+                autoSave();
+            }
+            
+            document.addEventListener('mousemove', onMouseMove);
+            document.addEventListener('mouseup', onMouseUp);
+        }
+
+        // Função para mostrar posição do elemento
+        function showPositionIndicator(element, e) {
+            const indicator = document.createElement('div');
+            indicator.className = 'position-indicator';
+            indicator.textContent = `X: ${parseInt(element.style.left) || 0}, Y: ${parseInt(element.style.top) || 0}`;
+            indicator.style.left = e.clientX + 10 + 'px';
+            indicator.style.top = e.clientY - 30 + 'px';
+            document.body.appendChild(indicator);
+            
+            setTimeout(() => indicator.remove(), 2000);
+        }
+
         function saveProject() {
             if (!currentProject) return;
             
@@ -959,13 +1532,41 @@
         }
 
         function addElement(type) {
+            // Calcular posição inteligente para evitar sobreposição
+            const canvas = document.getElementById('canvas');
+            const existingElements = Array.from(canvas.querySelectorAll('.element'));
+            let x = 50, y = 50;
+            
+            if (existingElements.length > 0) {
+                // Encontrar a posição mais baixa e à direita
+                let maxX = 0, maxY = 0;
+                existingElements.forEach(el => {
+                    const elX = parseInt(el.style.left) || 0;
+                    const elY = parseInt(el.style.top) || 0;
+                    const elWidth = parseInt(el.style.width) || 200;
+                    const elHeight = parseInt(el.style.height) || 50;
+                    
+                    if (elX + elWidth > maxX) maxX = elX + elWidth;
+                    if (elY + elHeight > maxY) maxY = elY + elHeight;
+                });
+                
+                // Posicionar o novo elemento abaixo ou à direita
+                if (maxX + 200 < canvas.offsetWidth) {
+                    x = maxX + 20;
+                    y = 50;
+                } else {
+                    x = 50;
+                    y = maxY + 20;
+                }
+            }
+            
             const element = {
                 id: 'element_' + (++elementCounter),
                 type: type,
-                x: 50 + (elementCounter * 10),
-                y: 50 + (elementCounter * 10),
-                width: type === 'text' ? 200 : (type === 'button' ? 120 : 200),
-                height: type === 'text' ? 30 : (type === 'button' ? 40 : 50),
+                x: x,
+                y: y,
+                width: getDefaultWidth(type),
+                height: getDefaultHeight(type),
                 content: getDefaultContent(type),
                 styles: getDefaultStyles(type)
             };
@@ -976,6 +1577,52 @@
             autoSave();
         }
 
+        function getDefaultWidth(type) {
+            switch(type) {
+                case 'text': return 200;
+                case 'button': return 120;
+                case 'image': return 200;
+                case 'header': return 800;
+                case 'footer': return 800;
+                case 'section': return 600;
+                case 'nav': return 800;
+                case 'aside': return 250;
+                case 'main': return 700;
+                case 'form': return 400;
+                case 'textarea': return 300;
+                case 'select': return 200;
+                case 'video': return 400;
+                case 'audio': return 300;
+                case 'iframe': return 400;
+                case 'canvas': return 300;
+                case 'table': return 500;
+                default: return 200;
+            }
+        }
+
+        function getDefaultHeight(type) {
+            switch(type) {
+                case 'text': return 30;
+                case 'button': return 40;
+                case 'image': return 150;
+                case 'header': return 80;
+                case 'footer': return 60;
+                case 'section': return 200;
+                case 'nav': return 50;
+                case 'aside': return 300;
+                case 'main': return 400;
+                case 'form': return 150;
+                case 'textarea': return 100;
+                case 'select': return 35;
+                case 'video': return 225;
+                case 'audio': return 50;
+                case 'iframe': return 300;
+                case 'canvas': return 200;
+                case 'table': return 100;
+                default: return 50;
+            }
+        }
+
         function getDefaultContent(type) {
             switch(type) {
                 case 'text': return 'Texto editável';
@@ -984,6 +1631,26 @@
                 case 'div': return 'Container';
                 case 'input': return 'Digite aqui...';
                 case 'link': return 'Link';
+                case 'header': return '<h1>Cabeçalho</h1>';
+                case 'footer': return '<p>Rodapé</p>';
+                case 'section': return '<h2>Seção</h2><p>Conteúdo da seção</p>';
+                case 'nav': return '<a href="#">Início</a> | <a href="#">Sobre</a> | <a href="#">Contato</a>';
+                case 'aside': return '<h3>Barra lateral</h3><p>Conteúdo lateral</p>';
+                case 'main': return '<h1>Conteúdo Principal</h1><p>Conteúdo principal da página</p>';
+                case 'form': return '<form><input type="text" placeholder="Nome"><input type="email" placeholder="Email"><button type="submit">Enviar</button></form>';
+                case 'textarea': return 'Digite seu texto aqui...';
+                case 'select': return '<select><option>Opção 1</option><option>Opção 2</option><option>Opção 3</option></select>';
+                case 'checkbox': return '<input type="checkbox" id="check1"><label for="check1">Opção</label>';
+                case 'radio': return '<input type="radio" name="radio1" id="radio1"><label for="radio1">Opção 1</label>';
+                case 'label': return 'Label do campo';
+                case 'video': return '<video controls><source src="video.mp4" type="video/mp4">Seu navegador não suporta vídeo.</video>';
+                case 'audio': return '<audio controls><source src="audio.mp3" type="audio/mpeg">Seu navegador não suporta áudio.</audio>';
+                case 'iframe': return '<iframe src="https://www.google.com" width="300" height="200"></iframe>';
+                case 'canvas': return '<canvas width="200" height="150" style="border:1px solid #000;"></canvas>';
+                case 'svg': return '<svg width="100" height="100"><circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red"/></svg>';
+                case 'code': return '<code>console.log("Hello World!");</code>';
+                case 'pre': return '<pre>function hello() {\n    console.log("Hello World!");\n}</pre>';
+                case 'table': return '<table border="1"><tr><th>Cabeçalho 1</th><th>Cabeçalho 2</th></tr><tr><td>Dado 1</td><td>Dado 2</td></tr></table>';
                 default: return '';
             }
         }
@@ -996,6 +1663,26 @@
                 case 'div': return 'background: #f0f0f0; border: 1px solid #ccc; padding: 20px;';
                 case 'input': return 'border: 1px solid #ccc; padding: 8px; border-radius: 4px; font-size: 14px;';
                 case 'link': return 'color: #667eea; text-decoration: none;';
+                case 'header': return 'background: #333; color: white; padding: 20px; text-align: center;';
+                case 'footer': return 'background: #f8f9fa; border-top: 1px solid #dee2e6; padding: 20px; text-align: center;';
+                case 'section': return 'background: white; border: 1px solid #dee2e6; padding: 30px; margin: 20px 0;';
+                case 'nav': return 'background: #f8f9fa; padding: 15px; border-bottom: 1px solid #dee2e6;';
+                case 'aside': return 'background: #f8f9fa; border-left: 3px solid #667eea; padding: 20px;';
+                case 'main': return 'background: white; padding: 30px; min-height: 400px;';
+                case 'form': return 'background: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid #dee2e6;';
+                case 'textarea': return 'border: 1px solid #ccc; padding: 8px; border-radius: 4px; font-size: 14px; width: 100%; min-height: 100px; resize: vertical;';
+                case 'select': return 'border: 1px solid #ccc; padding: 8px; border-radius: 4px; font-size: 14px; background: white;';
+                case 'checkbox': return 'margin: 5px;';
+                case 'radio': return 'margin: 5px;';
+                case 'label': return 'font-weight: bold; color: #333; margin-bottom: 5px; display: block;';
+                case 'video': return 'max-width: 100%; height: auto; border-radius: 8px;';
+                case 'audio': return 'width: 100%;';
+                case 'iframe': return 'border: 1px solid #ccc; border-radius: 4px;';
+                case 'canvas': return 'border: 1px solid #ccc; border-radius: 4px;';
+                case 'svg': return 'max-width: 100%; height: auto;';
+                case 'code': return 'background: #f8f9fa; padding: 5px; border-radius: 3px; font-family: monospace; color: #e83e8c;';
+                case 'pre': return 'background: #f8f9fa; padding: 15px; border-radius: 5px; font-family: monospace; overflow-x: auto; border: 1px solid #dee2e6;';
+                case 'table': return 'border-collapse: collapse; width: 100%;';
                 default: return '';
             }
         }
@@ -1025,10 +1712,17 @@
             
             element.onclick = (e) => {
                 e.stopPropagation();
-                selectElement(element);
+                selectElement(element, e);
+            };
+            
+            element.onmousemove = (e) => {
+                if (element.classList.contains('selected')) {
+                    showPositionIndicator(element, e);
+                }
             };
             
             makeDraggable(element);
+            addResizeHandles(element);
             canvas.appendChild(element);
         }
 
@@ -1046,6 +1740,46 @@
                     return `<input type="text" placeholder="${content}" style="${styles}">`;
                 case 'link':
                     return `<a href="#" style="${styles}">${content}</a>`;
+                case 'header':
+                    return `<header style="${styles}">${content}</header>`;
+                case 'footer':
+                    return `<footer style="${styles}">${content}</footer>`;
+                case 'section':
+                    return `<section style="${styles}">${content}</section>`;
+                case 'nav':
+                    return `<nav style="${styles}">${content}</nav>`;
+                case 'aside':
+                    return `<aside style="${styles}">${content}</aside>`;
+                case 'main':
+                    return `<main style="${styles}">${content}</main>`;
+                case 'form':
+                    return `<form style="${styles}">${content}</form>`;
+                case 'textarea':
+                    return `<textarea placeholder="${content}" style="${styles}"></textarea>`;
+                case 'select':
+                    return `<select style="${styles}">${content}</select>`;
+                case 'checkbox':
+                    return `<div style="${styles}">${content}</div>`;
+                case 'radio':
+                    return `<div style="${styles}">${content}</div>`;
+                case 'label':
+                    return `<label style="${styles}">${content}</label>`;
+                case 'video':
+                    return `<video controls style="${styles}">${content}</video>`;
+                case 'audio':
+                    return `<audio controls style="${styles}">${content}</audio>`;
+                case 'iframe':
+                    return `<iframe style="${styles}">${content}</iframe>`;
+                case 'canvas':
+                    return `<canvas style="${styles}">${content}</canvas>`;
+                case 'svg':
+                    return `<svg style="${styles}">${content}</svg>`;
+                case 'code':
+                    return `<code style="${styles}">${content}</code>`;
+                case 'pre':
+                    return `<pre style="${styles}">${content}</pre>`;
+                case 'table':
+                    return `<table style="${styles}">${content}</table>`;
                 default:
                     return `<div style="${styles}">${content}</div>`;
             }
@@ -1056,7 +1790,7 @@
             let startX, startY, startLeft, startTop;
             
             element.onmousedown = (e) => {
-                if (e.target.classList.contains('control-btn')) return;
+                if (e.target.classList.contains('control-btn') || e.target.classList.contains('resize-handle')) return;
                 isDragging = true;
                 startX = e.clientX;
                 startY = e.clientY;
@@ -1068,8 +1802,16 @@
             
             document.onmousemove = (e) => {
                 if (!isDragging) return;
-                const newLeft = startLeft + (e.clientX - startX);
-                const newTop = startTop + (e.clientY - startY);
+                let newLeft = startLeft + (e.clientX - startX);
+                let newTop = startTop + (e.clientY - startY);
+                
+                // Snap to grid se habilitado
+                if (snapToGridEnabled) {
+                    const gridSize = 20;
+                    newLeft = Math.round(newLeft / gridSize) * gridSize;
+                    newTop = Math.round(newTop / gridSize) * gridSize;
+                }
+                
                 element.style.left = Math.max(0, newLeft) + 'px';
                 element.style.top = Math.max(0, newTop) + 'px';
             };
@@ -1077,15 +1819,33 @@
             document.onmouseup = () => {
                 if (isDragging) {
                     isDragging = false;
+                    saveToHistory();
                     autoSave();
                 }
             };
         }
 
-        function selectElement(element) {
-            document.querySelectorAll('.element').forEach(el => el.classList.remove('selected'));
-            element.classList.add('selected');
-            selectedElement = element;
+        function selectElement(element, event) {
+            if (event && event.ctrlKey) {
+                // Seleção múltipla com Ctrl
+                if (element.classList.contains('selected')) {
+                    element.classList.remove('selected');
+                    selectedElements = selectedElements.filter(el => el !== element);
+                    if (selectedElement === element) {
+                        selectedElement = selectedElements.length > 0 ? selectedElements[selectedElements.length - 1] : null;
+                    }
+                } else {
+                    element.classList.add('selected');
+                    selectedElements.push(element);
+                    selectedElement = element;
+                }
+            } else {
+                // Seleção única
+                document.querySelectorAll('.element').forEach(el => el.classList.remove('selected'));
+                element.classList.add('selected');
+                selectedElement = element;
+                selectedElements = [element];
+            }
         }
 
         function editElement(elementId) {
@@ -1354,8 +2114,9 @@ console.log("Site criado com Sitefy!");
             if (selectedElement) {
                 const canvas = document.getElementById('canvas');
                 const canvasWidth = canvas.offsetWidth;
-                const elementWidth = selectedElement.offsetWidth;
-                selectedElement.style.left = ((canvasWidth - elementWidth) / 2) + 'px';
+                const elementWidth = parseInt(selectedElement.style.width) || selectedElement.offsetWidth;
+                const newLeft = Math.max(0, (canvasWidth - elementWidth) / 2);
+                selectedElement.style.left = newLeft + 'px';
                 saveToHistory();
                 autoSave();
             }
@@ -1365,8 +2126,9 @@ console.log("Site criado com Sitefy!");
             if (selectedElement) {
                 const canvas = document.getElementById('canvas');
                 const canvasWidth = canvas.offsetWidth;
-                const elementWidth = selectedElement.offsetWidth;
-                selectedElement.style.left = (canvasWidth - elementWidth - 10) + 'px';
+                const elementWidth = parseInt(selectedElement.style.width) || selectedElement.offsetWidth;
+                const newLeft = Math.max(0, canvasWidth - elementWidth - 10);
+                selectedElement.style.left = newLeft + 'px';
                 saveToHistory();
                 autoSave();
             }
@@ -1393,6 +2155,7 @@ console.log("Site criado com Sitefy!");
                 if (selectedElement) {
                     selectedElement.classList.remove('selected');
                     selectedElement = null;
+                    selectedElements = [];
                 }
             }
         };
@@ -1419,6 +2182,18 @@ console.log("Site criado com Sitefy!");
                             undo();
                         }
                         break;
+                    case 'd':
+                        e.preventDefault();
+                        duplicateElement();
+                        break;
+                    case 'g':
+                        e.preventDefault();
+                        groupElements();
+                        break;
+                    case 'u':
+                        e.preventDefault();
+                        ungroupElements();
+                        break;
                     case 'Delete':
                     case 'Backspace':
                         if (selectedElement) {
@@ -1427,6 +2202,53 @@ console.log("Site criado com Sitefy!");
                         }
                         break;
                 }
+            }
+            
+            // Atalhos sem Ctrl
+            switch(e.key) {
+                case 'Escape':
+                    if (selectedElement) {
+                        selectedElement.classList.remove('selected');
+                        selectedElement = null;
+                        selectedElements = [];
+                    }
+                    break;
+                case 'ArrowUp':
+                    if (selectedElement) {
+                        e.preventDefault();
+                        const currentTop = parseInt(selectedElement.style.top) || 0;
+                        selectedElement.style.top = (currentTop - 10) + 'px';
+                        saveToHistory();
+                        autoSave();
+                    }
+                    break;
+                case 'ArrowDown':
+                    if (selectedElement) {
+                        e.preventDefault();
+                        const currentTop = parseInt(selectedElement.style.top) || 0;
+                        selectedElement.style.top = (currentTop + 10) + 'px';
+                        saveToHistory();
+                        autoSave();
+                    }
+                    break;
+                case 'ArrowLeft':
+                    if (selectedElement) {
+                        e.preventDefault();
+                        const currentLeft = parseInt(selectedElement.style.left) || 0;
+                        selectedElement.style.left = (currentLeft - 10) + 'px';
+                        saveToHistory();
+                        autoSave();
+                    }
+                    break;
+                case 'ArrowRight':
+                    if (selectedElement) {
+                        e.preventDefault();
+                        const currentLeft = parseInt(selectedElement.style.left) || 0;
+                        selectedElement.style.left = (currentLeft + 10) + 'px';
+                        saveToHistory();
+                        autoSave();
+                    }
+                    break;
             }
         });
 
