@@ -106,6 +106,52 @@
             flex-shrink: 0;
         }
 
+        /* Layout de celular */
+        .mobile-layout {
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 60px);
+        }
+
+        .mobile-sidebar {
+            width: 100%;
+            height: 120px;
+            background: white;
+            border-bottom: 1px solid #e9ecef;
+            overflow-x: auto;
+            flex-shrink: 0;
+        }
+
+        .mobile-editor-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: white;
+            min-width: 0;
+        }
+
+        .mobile-canvas-container {
+            flex: 1;
+            background: #f8f9fa;
+            padding: 10px;
+            overflow: auto;
+            position: relative;
+            min-height: 0;
+        }
+
+        .mobile-canvas {
+            background: white;
+            min-height: 600px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            width: 375px;
+            height: 667px;
+            margin: 0 auto;
+            border: 2px solid #333;
+        }
+
         .sidebar-section {
             padding: 20px;
             border-bottom: 1px solid #e9ecef;
@@ -505,6 +551,100 @@
             margin-top: 20px;
         }
 
+        .position-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1003;
+        }
+
+        .position-modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 400px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .position-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .position-input {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .position-input label {
+            font-weight: 500;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        .position-input input {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .size-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .size-input {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .size-input label {
+            font-weight: 500;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        .size-input input {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .position-preview {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .position-preview h4 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .position-preview p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
         @media (max-width: 768px) {
             .header {
                 padding: 0 10px;
@@ -676,318 +816,137 @@
     </div>
 
     <div class="main-container">
-        <div class="sidebar">
-            <div class="sidebar-section">
-                <div class="sidebar-title">Elementos Básicos</div>
-                <div class="tool-grid">
-                    <div class="tool-btn" onclick="addElement('text')">
-                        <svg fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M5 4v3h5.5v12h3V7H19V4z"/>
-                        </svg>
-                        Texto
+        <div class="mobile-layout">
+            <div class="mobile-sidebar">
+                <div class="sidebar-section">
+                    <div class="sidebar-title">Elementos</div>
+                    <div class="tool-grid" style="grid-template-columns: repeat(8, 1fr); min-width: 600px;">
+                        <div class="tool-btn" onclick="addElement('text')">
+                            <svg fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M5 4v3h5.5v12h3V7H19V4z"/>
+                            </svg>
+                            Texto
+                        </div>
+                        <div class="tool-btn" onclick="addElement('button')">
+                            <svg fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            </svg>
+                            Botão
+                        </div>
+                        <div class="tool-btn" onclick="addElement('image')">
+                            <svg fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
+                            </svg>
+                            Imagem
+                        </div>
+                        <div class="tool-btn" onclick="addElement('header')">
+                            <svg fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/>
+                            </svg>
+                            Header
+                        </div>
+                        <div class="tool-btn" onclick="addElement('section')">
+                            <svg fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                            </svg>
+                            Section
+                        </div>
+                        <div class="tool-btn" onclick="addElement('form')">
+                            <svg fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+                            </svg>
+                            Form
+                        </div>
+                        <div class="tool-btn" onclick="addElement('video')">
+                            <svg fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/>
+                            </svg>
+                            Video
+                        </div>
+                        <div class="tool-btn" onclick="addElement('footer')">
+                            <svg fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/>
+                            </svg>
+                            Footer
+                        </div>
                     </div>
-                    <div class="tool-btn" onclick="addElement('button')">
-                        <svg fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                        </svg>
-                        Botão
-                    </div>
-                    <div class="tool-btn" onclick="addElement('image')">
-                        <svg fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
-                        </svg>
-                        Imagem
-                    </div>
-                    <div class="tool-btn" onclick="addElement('div')">
-                        <svg fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
-                        </svg>
-                        Container
-                    </div>
-                    <div class="tool-btn" onclick="addElement('input')">
-                        <svg fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M9 11H7v6h2v-6zm4 0h-2v6h2v-6zm4 0h-2v6h2v-6zm2.33-10H4.67C4.3 1 4 1.3 4 1.67v1.66C4 3.7 4.3 4 4.67 4h14.66C19.7 4 20 3.7 20 3.33V1.67C20 1.3 19.7 1 19.33 1z"/>
-                        </svg>
-                        Input
-                    </div>
-                    <div class="tool-btn" onclick="addElement('link')">
-                        <svg fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/>
-                        </svg>
-                        Link
-                    </div>
-                </div>
-            </div>
-            
-            <div class="sidebar-section">
-                <div class="sidebar-title">Estrutura</div>
-                <div class="tool-grid">
-                    <div class="tool-btn" onclick="addElement('header')">
-                        <svg fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/>
-                        </svg>
-                        Header
-                    </div>
-                    <div class="tool-btn" onclick="addElement('footer')">
-                        <svg fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/>
-                        </svg>
-                        Footer
-                    </div>
-                    <div class="tool-btn" onclick="addElement('section')">
-                        <svg fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
-                        </svg>
-                        Section
-                    </div>
-                    <div class="tool-btn" onclick="addElement('nav')">
-                        <svg fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
-                        </svg>
-                        Nav
-                    </div>
-                    <div class="tool-btn" onclick="addElement('aside')">
-                        <svg fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
-                        </svg>
-                        Aside
-                    </div>
-                    <div class="tool-btn" onclick="addElement('main')">
-                        <svg fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
-                        </svg>
-                        Main
-                    </div>
-                </div>
-            </div>
-            
-            <div class="sidebar-section">
-                <div class="sidebar-title">Formulários</div>
-                <div class="tool-grid">
-                    <div class="tool-btn" onclick="addElement('form')">
-                        <svg fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
-                        </svg>
-                        Form
-                    </div>
-                    <div class="tool-btn" onclick="addElement('textarea')">
-                        <svg fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
-                        </svg>
-                        Textarea
-                    </div>
-                    <div class="tool-btn" onclick="addElement('select')">
-                        <svg fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M7 10l5 5 5-5z"/>
-                        </svg>
-                        Select
-                    </div>
-                    <div class="tool-btn" onclick="addElement('checkbox')">
-                        <svg fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                        </svg>
-                        Checkbox
-                    </div>
-                    <div class="tool-btn" onclick="addElement('radio')">
-                        <svg fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                        </svg>
-                        Radio
-                    </div>
-                    <div class="tool-btn" onclick="addElement('label')">
-                        <svg fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z"/>
-                        </svg>
-                        Label
-                    </div>
-                </div>
-            </div>
-            
-            <div class="sidebar-section">
-                <div class="sidebar-title">Mídia</div>
-                <div class="tool-grid">
-                    <div class="tool-btn" onclick="addElement('video')">
-                        <svg fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/>
-                        </svg>
-                        Video
-                    </div>
-                    <div class="tool-btn" onclick="addElement('audio')">
-                        <svg fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
-                        </svg>
-                        Audio
-                    </div>
-                    <div class="tool-btn" onclick="addElement('iframe')">
-                        <svg fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
-                        </svg>
-                        Iframe
-                    </div>
-                    <div class="tool-btn" onclick="addElement('canvas')">
-                        <svg fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
-                        </svg>
-                        Canvas
-                    </div>
-                </div>
-            </div>
-            
-            <div class="sidebar-section">
-                <div class="sidebar-title">Avançado</div>
-                <div class="tool-grid">
-                    <div class="tool-btn" onclick="addElement('svg')">
-                        <svg fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
-                        </svg>
-                        SVG
-                    </div>
-                    <div class="tool-btn" onclick="addElement('code')">
-                        <svg fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
-                        </svg>
-                        Code
-                    </div>
-                    <div class="tool-btn" onclick="addElement('pre')">
-                        <svg fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
-                        </svg>
-                        Pre
-                    </div>
-                    <div class="tool-btn" onclick="addElement('table')">
-                        <svg fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/>
-                        </svg>
-                        Table
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="editor-area">
-            <div class="editor-toolbar">
-                <div class="toolbar-group">
-                    <button class="icon-btn" onclick="undo()" title="Desfazer (Ctrl+Z)">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12.5 8c-2.65 0-5.05.99-6.9 2.6L2 7v9h9l-3.62-3.62c1.39-1.16 3.16-1.88 5.12-1.88 3.54 0 6.55 2.31 7.6 5.5l2.37-.78C21.08 11.03 17.15 8 12.5 8z"/>
-                        </svg>
-                    </button>
-                    <button class="icon-btn" onclick="redo()" title="Refazer (Ctrl+Y)">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M18.4 10.6C16.55 8.99 14.15 8 11.5 8c-4.65 0-8.58 3.03-9.96 7.22L3.9 16c1.05-3.19 4.05-5.5 7.6-5.5 1.95 0 3.73.72 5.12 1.88L13 16h9V7l-3.6 3.6z"/>
-                        </svg>
-                    </button>
-                    <button class="icon-btn" onclick="duplicateElement()" title="Duplicar (Ctrl+D)">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
-                        </svg>
-                    </button>
-                </div>
-                
-                <div class="toolbar-group">
-                    <button class="icon-btn" onclick="alignLeft()" title="Alinhar à esquerda">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M15 15H3v2h12v-2zm0-8H3v2h12V7zM3 13h18v-2H3v2zm0 8h18v-2H3v2zM3 3v2h18V3H3z"/>
-                        </svg>
-                    </button>
-                    <button class="icon-btn" onclick="alignCenter()" title="Centralizar">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M7 15v2h10v-2H7zm-4 6h18v-2H3v2zm0-8h18v-2H3v2zm4-6v2h10V7H7zM3 3v2h18V3H3z"/>
-                        </svg>
-                    </button>
-                    <button class="icon-btn" onclick="alignRight()" title="Alinhar à direita">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M3 21h18v-2H3v2zm6-4h12v-2H9v2zm-6-4h18v-2H3v2zm6-4h12V7H9v2zM3 3v2h18V3H3z"/>
-                        </svg>
-                    </button>
-                    <button class="icon-btn" onclick="alignTop()" title="Alinhar ao topo">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M8 11h3v10h2V11h3l-4-4-4 4zM4 3v2h16V3H4z"/>
-                        </svg>
-                    </button>
-                    <button class="icon-btn" onclick="alignMiddle()" title="Alinhar ao centro vertical">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M8 19h3v4h2v-4h3l-4-4-4 4zM4 3v2h16V3H4z"/>
-                        </svg>
-                    </button>
-                    <button class="icon-btn" onclick="alignBottom()" title="Alinhar à base">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M16 13h-3V3h-2v10H8l4 4 4-4zM4 19v2h16v-2H4z"/>
-                        </svg>
-                    </button>
-                </div>
-                
-                <div class="toolbar-group">
-                    <button class="icon-btn" onclick="bringToFront()" title="Trazer para frente">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M8 11h3v10h2V11h3l-4-4-4 4zM4 3v2h16V3H4z"/>
-                        </svg>
-                    </button>
-                    <button class="icon-btn" onclick="sendToBack()" title="Enviar para trás">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M16 13h-3V3h-2v10H8l4 4 4-4zM4 19v2h16v-2H4z"/>
-                        </svg>
-                    </button>
-                    <button class="icon-btn" onclick="groupElements()" title="Agrupar elementos">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M16 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zm4 18v-6h2.5l-2.54-7.63A1.5 1.5 0 0 0 18.54 8H5.46c-.84 0-1.61.58-1.96 1.37L1 16v6h2v-5h2.5l2.54-7.63c.35-.79 1.12-1.37 1.96-1.37h13.08c.84 0 1.61.58 1.96 1.37L19.5 16H22v5h2z"/>
-                        </svg>
-                    </button>
-                    <button class="icon-btn" onclick="ungroupElements()" title="Desagrupar elementos">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M16 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zm4 18v-6h2.5l-2.54-7.63A1.5 1.5 0 0 0 18.54 8H5.46c-.84 0-1.61.58-1.96 1.37L1 16v6h2v-5h2.5l2.54-7.63c.35-.79 1.12-1.37 1.96-1.37h13.08c.84 0 1.61.58 1.96 1.37L19.5 16H22v5h2z"/>
-                        </svg>
-                    </button>
-                </div>
-                
-                <div class="toolbar-group">
-                    <button class="icon-btn" onclick="showGrid()" title="Mostrar/Ocultar grade">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M3 3v8h8V3H3zm6 6H5V5h4v4zm-6 4v8h8v-8H3zm6 6H5v-4h4v4zm4-16v8h8V3h-8zm6 6h-4V5h4v4zm-6 4v8h8v-8h-8zm6 6h-4v-4h4v4z"/>
-                        </svg>
-                    </button>
-                    <button class="icon-btn" onclick="snapToGrid()" title="Aderir à grade">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M3 3v8h8V3H3zm6 6H5V5h4v4zm-6 4v8h8v-8H3zm6 6H5v-4h4v4zm4-16v8h8V3h-8zm6 6h-4V5h4v4zm-6 4v8h8v-8h-8zm6 6h-4v-4h4v4z"/>
-                        </svg>
-                    </button>
-                    <button class="icon-btn" onclick="showRulers()" title="Mostrar/Ocultar réguas">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M1 3v18h22V3H1zm20 16H3V5h18v14zM9 7H7v2h2V7zm4 0h-2v2h2V7zm4 0h-2v2h2V7zM9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2z"/>
-                        </svg>
-                    </button>
-                </div>
-                
-                <div class="toolbar-group">
-                    <button class="icon-btn" onclick="zoomIn()" title="Aumentar zoom">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
-                        </svg>
-                    </button>
-                    <button class="icon-btn" onclick="zoomOut()" title="Diminuir zoom">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M19 13H5v-2h14v2z"/>
-                        </svg>
-                    </button>
-                    <button class="icon-btn" onclick="resetZoom()" title="Zoom 100%">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-                        </svg>
-                    </button>
                 </div>
             </div>
 
-            <div class="canvas-container">
-                <div class="canvas" id="canvas" ondrop="dropElement(event)" ondragover="allowDrop(event)"></div>
-            </div>
-
-            <div class="code-panel">
-                <div class="code-tabs">
-                    <button class="code-tab active" onclick="showCode('html')">HTML</button>
-                    <button class="code-tab" onclick="showCode('css')">CSS</button>
-                    <button class="code-tab" onclick="showCode('js')">JavaScript</button>
+            <div class="mobile-editor-area">
+                <div class="editor-toolbar">
+                    <div class="toolbar-group">
+                        <button class="icon-btn" onclick="undo()" title="Desfazer (Ctrl+Z)">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12.5 8c-2.65 0-5.05.99-6.9 2.6L2 7v9h9l-3.62-3.62c1.39-1.16 3.16-1.88 5.12-1.88 3.54 0 6.55 2.31 7.6 5.5l2.37-.78C21.08 11.03 17.15 8 12.5 8z"/>
+                            </svg>
+                        </button>
+                        <button class="icon-btn" onclick="redo()" title="Refazer (Ctrl+Y)">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M18.4 10.6C16.55 8.99 14.15 8 11.5 8c-4.65 0-8.58 3.03-9.96 7.22L3.9 16c1.05-3.19 4.05-5.5 7.6-5.5 1.95 0 3.73.72 5.12 1.88L13 16h9V7l-3.6 3.6z"/>
+                            </svg>
+                        </button>
+                        <button class="icon-btn" onclick="duplicateElement()" title="Duplicar (Ctrl+D)">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                            </svg>
+                        </button>
+                        <button class="icon-btn" onclick="showPositionModal()" title="Posicionar elemento">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <div class="toolbar-group">
+                        <button class="icon-btn" onclick="alignLeft()" title="Alinhar à esquerda">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M15 15H3v2h12v-2zm0-8H3v2h12V7zM3 13h18v-2H3v2zm0 8h18v-2H3v2zM3 3v2h18V3H3z"/>
+                            </svg>
+                        </button>
+                        <button class="icon-btn" onclick="alignCenter()" title="Centralizar">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M7 15v2h10v-2H7zm-4 6h18v-2H3v2zm0-8h18v-2H3v2zm4-6v2h10V7H7zM3 3v2h18V3H3z"/>
+                            </svg>
+                        </button>
+                        <button class="icon-btn" onclick="alignRight()" title="Alinhar à direita">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M3 21h18v-2H3v2zm6-4h12v-2H9v2zm-6-4h18v-2H3v2zm6-4h12V7H9v2zM3 3v2h18V3H3z"/>
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <div class="toolbar-group">
+                        <button class="icon-btn" onclick="bringToFront()" title="Trazer para frente">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M8 11h3v10h2V11h3l-4-4-4 4zM4 3v2h16V3H4z"/>
+                            </svg>
+                        </button>
+                        <button class="icon-btn" onclick="sendToBack()" title="Enviar para trás">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M16 13h-3V3h-2v10H8l4 4 4-4zM4 19v2h16v-2H4z"/>
+                            </svg>
+                        </button>
+                        <button class="icon-btn" onclick="showGrid()" title="Mostrar/Ocultar grade">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M3 3v8h8V3H3zm6 6H5V5h4v4zm-6 4v8h8v-8H3zm6 6H5v-4h4v4zm4-16v8h8V3h-8zm6 6h-4V5h4v4zm-6 4v8h8v-8h-8zm6 6h-4v-4h4v4z"/>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
-                <div class="code-content" id="codeContent"></div>
+
+                <div class="mobile-canvas-container">
+                    <div class="mobile-canvas" id="canvas" ondrop="dropElement(event)" ondragover="allowDrop(event)"></div>
+                </div>
+
+                <div class="code-panel">
+                    <div class="code-tabs">
+                        <button class="code-tab active" onclick="showCode('html')">HTML</button>
+                        <button class="code-tab" onclick="showCode('css')">CSS</button>
+                        <button class="code-tab" onclick="showCode('js')">JavaScript</button>
+                    </div>
+                    <div class="code-content" id="codeContent"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -1016,6 +975,44 @@
             <div class="modal-buttons">
                 <button class="btn btn-danger" onclick="closeModal()">Cancelar</button>
                 <button class="btn btn-success" onclick="saveElement()">Salvar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="position-modal" id="positionModal">
+        <div class="position-modal-content">
+            <div class="modal-title">Posicionar Elemento</div>
+            
+            <div class="position-preview">
+                <h4>Preview da Posição</h4>
+                <p>Elemento será posicionado em: <span id="positionPreview">X: 0, Y: 0</span></p>
+            </div>
+            
+            <div class="position-inputs">
+                <div class="position-input">
+                    <label for="posX">Posição X (px)</label>
+                    <input type="number" id="posX" min="0" max="375" value="0">
+                </div>
+                <div class="position-input">
+                    <label for="posY">Posição Y (px)</label>
+                    <input type="number" id="posY" min="0" max="667" value="0">
+                </div>
+            </div>
+            
+            <div class="size-inputs">
+                <div class="size-input">
+                    <label for="sizeWidth">Largura (px)</label>
+                    <input type="number" id="sizeWidth" min="50" max="375" value="200">
+                </div>
+                <div class="size-input">
+                    <label for="sizeHeight">Altura (px)</label>
+                    <input type="number" id="sizeHeight" min="30" max="667" value="50">
+                </div>
+            </div>
+            
+            <div class="modal-buttons">
+                <button class="btn btn-danger" onclick="closePositionModal()">Cancelar</button>
+                <button class="btn btn-success" onclick="applyPosition()">Aplicar</button>
             </div>
         </div>
     </div>
@@ -1484,6 +1481,71 @@
             
             setTimeout(() => indicator.remove(), 2000);
         }
+
+        // Funções do modal de posicionamento
+        function showPositionModal() {
+            if (!selectedElement) {
+                alert('Selecione um elemento primeiro');
+                return;
+            }
+            
+            const currentX = parseInt(selectedElement.style.left) || 0;
+            const currentY = parseInt(selectedElement.style.top) || 0;
+            const currentWidth = parseInt(selectedElement.style.width) || 200;
+            const currentHeight = parseInt(selectedElement.style.height) || 50;
+            
+            document.getElementById('posX').value = currentX;
+            document.getElementById('posY').value = currentY;
+            document.getElementById('sizeWidth').value = currentWidth;
+            document.getElementById('sizeHeight').value = currentHeight;
+            
+            updatePositionPreview();
+            document.getElementById('positionModal').style.display = 'flex';
+        }
+
+        function closePositionModal() {
+            document.getElementById('positionModal').style.display = 'none';
+        }
+
+        function updatePositionPreview() {
+            const x = document.getElementById('posX').value;
+            const y = document.getElementById('posY').value;
+            document.getElementById('positionPreview').textContent = `X: ${x}, Y: ${y}`;
+        }
+
+        function applyPosition() {
+            if (!selectedElement) return;
+            
+            const x = parseInt(document.getElementById('posX').value) || 0;
+            const y = parseInt(document.getElementById('posY').value) || 0;
+            const width = parseInt(document.getElementById('sizeWidth').value) || 200;
+            const height = parseInt(document.getElementById('sizeHeight').value) || 50;
+            
+            // Validar limites do canvas de celular
+            const maxX = 375 - width;
+            const maxY = 667 - height;
+            
+            const finalX = Math.max(0, Math.min(x, maxX));
+            const finalY = Math.max(0, Math.min(y, maxY));
+            
+            selectedElement.style.left = finalX + 'px';
+            selectedElement.style.top = finalY + 'px';
+            selectedElement.style.width = width + 'px';
+            selectedElement.style.height = height + 'px';
+            
+            closePositionModal();
+            saveToHistory();
+            autoSave();
+        }
+
+        // Adicionar event listeners para atualizar preview
+        document.addEventListener('DOMContentLoaded', function() {
+            const posX = document.getElementById('posX');
+            const posY = document.getElementById('posY');
+            
+            if (posX) posX.addEventListener('input', updatePositionPreview);
+            if (posY) posY.addEventListener('input', updatePositionPreview);
+        });
 
         function saveProject() {
             if (!currentProject) return;
@@ -1966,6 +2028,17 @@
             font-family: Arial, sans-serif;
             position: relative;
             min-height: 100vh;
+            max-width: 375px;
+            margin: 0 auto;
+            background: #f8f9fa;
+            overflow-x: hidden;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        img, video, iframe {
+            max-width: 100%;
+            height: auto;
         }
     </style>
 </head>
@@ -2000,13 +2073,33 @@
         }
 
         function generateCSS() {
-            return `/* CSS personalizado */
+            return `/* CSS personalizado para mobile */
 body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
     position: relative;
     min-height: 100vh;
+    max-width: 375px;
+    margin: 0 auto;
+    background: #f8f9fa;
+    overflow-x: hidden;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+img, video, iframe {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Estilos responsivos para elementos */
+@media (max-width: 375px) {
+    body {
+        padding: 10px;
+    }
 }
 
 /* Adicione seus estilos personalizados aqui */`;
