@@ -1,0 +1,16 @@
+# Emergency Backend - Dependências Python
+# Flask e extensões essenciais
+Flask==3.0.0
+Flask-CORS==4.0.0
+
+# Segurança e autenticação
+Werkzeug==3.0.1
+
+# Banco de dados
+sqlite3
+
+# Utilities
+python-dotenv==1.0.0
+
+# Para desenvolvimento
+pytest==7.4.0
